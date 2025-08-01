@@ -25,8 +25,8 @@
         <tbody>
             @foreach( var exam in Model){             
 			<tr>
-				<td> @exam.Data</td>
-                <td>@exam.Ora</td>
+				<td> @exam.Data.ToLongDateString()</td>
+                <td>@exam.Ora.ToShortTimeString()</td>
                 <td>@exam.School.Name</td>
                 <td>@exam.Esaminatore.Name @exam.Esaminatore.Surname</td>
             </tr>
