@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+
+}
+@using EcdlBooking.ViewModel;
+@model Admin_Exam_Create;
+<h1>Nuovo Esame</h1>
+
+<div class="container">
+
+
+    <form method="post" asp-action="Create_Post" asp-controller="Exam">
+        <br>
+        <!-- Data -->
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="inputData" class="col-form-label">Data</label>
+            </div>
+
+            <div class="col-auto">
+                <input type="date" id="inputData" class="form-control"
+                       asp-for="@Model.Data"
+                       aria-describedby="DataHelpInline">
+            </div>
+            <div class="col-auto">
+                <span id="DataHelpInline" class="form-text">
+                    Must be 8-20 characters long.
+                </span>
+            </div>
+        </div>
+
+        <!-- Ora -->
+        <br>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="inputTime" class="col-form-label">
+                    Inizio</label>
+            </div>
+
+            <div class="col-auto">
+                <input type="time" id="inputTime" class="form-control"
+                       asp-for="@Model.Ora" aria-describedby="timeHelpInline" value="@Model.Data.ToString("hh:mm")">
+            </div>
+
+            <div class="col-auto">
+                <span id="timeHelpInline" class="form-text">
+                    Inserire un orario corretto
+                </span>
+            </div>
+        </div>
+
+        <!-- Tipo Sessione -->
+        <br>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="SelectImput" class="col-form-label">Seleziona</label>
+            </div>
+
+            <div class="col-auto">
+                <select class="form-select form-control mb-3"
+                        id="SelectImput"
+                        asp-for="@Model.TipoSessione"
+                        aria-describedby="SelectHelpInline"
+                        aria-label="Large select example">
+
+                    <option value="true">Aperta</option>
+                    <option value="true">Aperta</option>
+
+
+
+
+                </select>
+            </div>
+
+
+
+            <div class="col-auto">
+                <span id="SelectHelpInline" class="form-text">
+                    Must be 8-20 characters long.
+                </span>
+            </div>
+        </div>
+
+        <!-- Invio dati -->
+        <br>
+        <button type="submit" class="btn btn-danger">Aggiungi</button>
+    </form>
+    <br />
+    <br />
+
+
+    <div class="alert alert-light" role="alert">
+        Pagina Per L inserimento di esame
+    </div>
+
+</div>
+
+
+

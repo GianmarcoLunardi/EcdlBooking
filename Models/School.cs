@@ -12,20 +12,21 @@ namespace EcdlBooking.Models
         [Key]
         public Guid id { get; set; } = Guid.NewGuid();
         public string Name { get; set; } 
-        public string Address { get; set; }
-
-        //public List<Class> Classes { get; set; } = new List<Class>();
-        public string City { get; set; }
+        public string? Address { get; set; }
+        public string? City { get; set; }
 
 
         //public Guid IdClass { get; set; }
-        public IList<Class> Classes { get; set; } = new List<Class>();
+        //public IList<Class> Classes { get; set; } = new List<Class>();
 
-        public ICollection<Exam> Posts { get; } = new List<Exam>(); // Collection navigation containing dependents
+        //Relazione con l esame 1:n
+        // in una sciuola si possono fare più di un esame
+        public List<Exam>? Exam { get; set; } = null;
+        
 
 
          //Relazione Con La tabella Della Scuole
-         public List<ApplicationUser> ApplicationUsers { get; } = new List<ApplicationUser>();
+         //public List<ApplicationUser> ApplicationUsers { get; } = new List<ApplicationUser>();
 
     }
 }

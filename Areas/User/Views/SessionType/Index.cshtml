@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    //@model IEnumerable<EcdlBooking.Models.SessionType>;
+    int i = 0;
+
+}
+<br />
+
+
+<div class="container">
+    <!-- Content here -->
+
+
+    <a class="btn btn-primary" asp-action="Create" role="button">Aggiungi</a>
+
+
+    <table class="table">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tipo Sessione</th>
+                <th scope="col">Sitzungstyp</th>
+                <th scope="col">Azione</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+
+
+            @foreach (var x in @Model)
+            {
+
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @x.TypeIt
+                    </td>
+                    <td>
+                        @x.TypeDe
+                    </td>
+                    <td>
+                        <a class="btn btn-alert mb-3" asp-action="Edit" asp-route-id="@x.Id.ToString()">Edit</a>
+                        <a class="btn btn-danger mb-3" asp-controller="SessionType" asp-action="Delete" asp-route-id="@x.Id.ToString()">-</a>
+                    </td>
+                </tr>
+            }
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</div>

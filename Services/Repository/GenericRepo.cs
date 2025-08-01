@@ -1,17 +1,19 @@
 ﻿
+using EcdlBooking.Data;
 using EcdlBooking.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace EcdlBooking.Services.Repository
 {
-    public class GenericRep<T> : IGenericRepo<T> where T : class
+    public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
         internal DbSet<T> Data;
-        private readonly DbContext _context; 
+        private readonly ApplicationDbContext _context; 
         
-        public GenericRep(DbContext context)
+        public GenericRepo(ApplicationDbContext context)
         {
             _context = context;
           
@@ -20,16 +22,11 @@ namespace EcdlBooking.Services.Repository
         public async Task add(T Entity)
         {
             await _context.Set<T>().AddAsync(Entity);
-        }
+        }   
 
         public async Task delete(T Entity)
         {
             _context.Set<T>().Remove(Entity);
-        }
-
-        public async Task edit(T Entity)
-        {
-             _context.Set<T>().Remove(Entity);
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
@@ -40,6 +37,7 @@ namespace EcdlBooking.Services.Repository
             {
                 query = query.Where(filter);
             }
+
             //include properties will be comma seperated
             if (includeProperties != null)
             {
@@ -58,11 +56,12 @@ namespace EcdlBooking.Services.Repository
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
+            // Si assegna il dbset alla variabile query
             IQueryable<T> query = _context.Set<T>();
 
             if (filter != null)
             {
-                query = query.Where(filter);
+               query = query.Where(filter);
             }
             //include properties will be comma seperated
             if (includeProperties != null)
@@ -73,6 +72,7 @@ namespace EcdlBooking.Services.Repository
                 }
             }
 
+           
             return query.FirstOrDefault();
         }
 

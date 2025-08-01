@@ -1,6 +1,13 @@
+using EcdlBooking.AutoMapper;
 using EcdlBooking.Data;
+using EcdlBooking.Models;
+using EcdlBooking.Services.Interfaces;
+using EcdlBooking.Services.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using EcdlBooking.Configurazione;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +17,50 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+// Manca la definizione  dell usermanager
+
+// inserimento del servizio di automapper
+
+//builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(typeof(UserProfile));
+builder.Services.AddAutoMapper(typeof(SchoolProfile));
+builder.Services.AddAutoMapper(typeof(ExamProfile));
+
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+{
+    options.Password.RequiredLength = 8;
+    options.Password.RequireDigit = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+
+    options.SignIn.RequireConfirmedAccount = false;
+})
+
+
+  // Aggiunge il supporto ai ruoli
+    .AddRoles<IdentityRole>()
+    .AddRoleManager<RoleManager<IdentityRole>>()
+            
+   // Inserimento del gestore dei ruoli
+
+    .AddUserManager<UserManager<ApplicationUser>>()
+    .AddSignInManager<SignInManager<ApplicationUser>>()
+
+    // Utilizzo del gestore base dati
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
+
+
+
+// inserimento dei servizi
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -37,7 +85,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{Area=User}/{controller=Studenti}/{action=Index}/{id?}");
 app.MapRazorPages();
-
+app.SeedStart(); // Inizializza il database e i dati di default 
 app.Run();

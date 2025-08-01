@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+
+}
+@model EcdlBooking.ViewModel.Admin_Exam_Create;
+<h1>Nuovo Esame</h1>
+
+<div class="container">
+
+
+    <form method="post" asp-area="Admin" asp-controller="Exam" asp-action="Create" >
+        <br>
+        <!-- Data -->
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Data</label>
+            </div>
+
+            <div class="col-auto">
+                <input type="date" class="form-control"
+                       asp-for="@Model.Data"
+                       aria-describedby="DataHelpInline">
+            </div>
+            <div class="col-auto">
+                <span id="DataHelpInline" class="form-text">
+                    Must be 8-20 characters long.
+                </span>
+            </div>
+        </div>
+
+        <!-- Ora -->
+        <br>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="inputTime" class="col-form-label"
+                asp-for="@Model.Ora"></label>
+            </div>
+
+            <div class="col-auto">
+                <input type="time" class="form-control"
+                       asp-for="@Model.Ora" aria-describedby="timeHelpInline" value="@Model.Ora.ToString("hh:mm")">
+            </div>
+
+            <div class="col-auto">
+                <span id="timeHelpInline" class="form-text">
+                    Inserire un orario corretto
+                </span>
+            </div>
+        </div>
+
+        <!-- Tipo Sessione -->
+        <br>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="SelectImput" class="col-form-label">Seleziona</label>
+            </div>
+
+            <div class="col-auto">
+                <select class="form-select form-control mb-3"
+                        asp-for="@Model.TipoSessione"
+                        aria-describedby="SelectHelpInline"
+                        aria-label="Large select example">
+
+                    <option value="true">Aperta</option>
+                    <option value="False">Chiusa</option>
+
+
+
+
+                </select>
+            </div>
+
+
+
+        </div>
+
+        <!-- Esaminatrice -->
+
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="SelectImput" class="col-form-label" asp-for="@Model.EsaminatoreId">
+                   
+                </label>
+            </div>
+
+            <div class="col-auto">
+                <select class="form-select form-control mb-3"
+                        aria-describedby="SelectHelpInline"
+                        aria-label="Large select example"
+                        asp-for="@Model.EsaminatoreId"
+                        asp-items="Model.EsaminatoreLista">
+ 
+
+
+                </select>
+            </div>
+
+        </div>
+
+
+        <!-- Selezione Della Punto su cui effettuare il test -->
+
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+
+                <label class="input-group-text border-success" asp-for="@Model.PlaceSelected"></label>
+
+            </div>
+
+            <div class="col-auto">
+                                <select class="form-control border-success" aria-label="Select your country"
+                                        asp-for="@Model.PlaceSelected"
+                                        asp-items="@Model.PlaceList"
+                                        >
+                                </select>
+            </div>
+
+        </div>
+
+                <!-- Invio dati -->
+                <br>
+                <button type="submit" class="btn btn-danger">Aggiungi</button>
+</form>
+    <br />
+    <br />
+
+
+    <div class="alert alert-light" role="alert">
+        Pagina Per L inserimento di esame
+    </div>
+
+</div>
+
+
+

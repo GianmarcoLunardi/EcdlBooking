@@ -5,8 +5,8 @@ namespace EcdlBooking.Services.Interfaces
 {
     public interface ISchoolRepository : IGenericRepo<School>
     {
-        IEnumerable<SelectListItem> GetCategoryListForDropDown();
-
+        IEnumerable<SelectListItem> GetCategoryListForDropDown(Guid? idSchool);
+        public School Find(Guid id);
         void Update(School school);
     }
 }

@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model EcdlBooking.Models.SessionType;
+}
+
+<div class="container">
+    <form method="post" asp-action="Create">
+
+        <div class="mb-3">
+            <label for="examplea" class="form-label">Tipo Sessione	</label>
+            <input type="text" class="form-control" id="examplea" asp-for="@Model.TypeIt" placeholder="Tipo Sessione">
+        </div>
+        <div class="mb-3">
+            <label for="exampleb" class="form-label">Sitzungstyp</label>
+            <input type="text" class="form-control" id="exampleb" placeholder="Sitzungstyp" asp-for="@Model.TypeDe">
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-3">Inserisci</button>
+
+    </form>
+
+</div>

@@ -1,0 +1,162 @@
+﻿@**@
+
+@{
+
+
+    //using EcdlBooking;
+    //using System.Linq;
+
+
+
+    ViewData["Title"] = "Pagina Utenti";
+    @model IEnumerable<EcdlBooking.Models.ApplicationUser>;
+
+
+
+
+
+
+}
+
+<!-- inizio Posizione dei tost -->
+<!--
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        Hello, world! This is a toast message.
+    </div>
+</div>
+
+-->
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Cancellare l utente selezionzato? 
+            <div class="mt-2 pt-2 border-top">
+                <button type="button" class="btn btn-primary btn-sm">Take action</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--fine Posozione dei tost -->
+
+
+
+
+<p class="alert-light"> Utenti </p>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Nome Cognome</th>
+            <th scope="col">Città</th>
+            <th scope="col">Scuola</th>
+            <th scope="col">Azioni</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var x in @Model)
+        {
+            <tr>
+                <td>
+
+                    <a asp-action="User"
+                    asp-controller="Users"
+                    asp-route-id="@x.Id">
+                        @x.UserName
+                    </a>
+
+
+
+
+
+                </td>
+                <td>
+                    @x.Name @x.Surname
+
+                </td>
+                <td>@x.City</td>
+                <td>
+                    
+                    @x.School.Name
+            </td>
+            <td>
+                <!--Cancella -->
+                    <a type="button" class="btn btn-primary btn-sm"
+                       id="liveToastBtn"
+                       asp-controller="Users"
+                       asp-action="Delete"
+                       asp-route-id="@x.Id">
+
+                        <i class="bi bi-calendar-x"></i>
+                        Cancella
+                    </a>
+                    &nbsp;
+                <!--Modifica-->
+                    <a type="button" class="btn btn-primary btn-sm"
+                            asp-controller="Users"
+                            asp-action="User"
+                            asp-route-id="@x.Id">
+                        <i class="bi bi-pencil-square"></i>
+                        Modifica
+                    </a>
+                    &nbsp;
+                <!--Visualizza-->
+
+                    <button type="button" class="btn btn-primary btn-sm"
+                            asp-controller="School)"
+                            asp-action="Details"
+                            asp-route-id="@x.Id">
+
+                    >
+                        <i class="bi bi-aspect-ratio"></i>
+                        Visualizza
+                   </button>
+                    &nbsp;
+
+            </td>
+        </tr>
+        }
+        </tbody>
+
+
+</table>
+    
+
+@section scripts {
+	<link href="~/toastify-js/toastify.css" rel="stylesheet" />
+	<link href="~/toastify-js/toastify.min.css" rel="stylesheet" />
+	<script src="~/toastify-js/toastify.js"></script>
+	<script src="~/toastify-js/toastify.min.js"></script>
+
+    <script type="text/javascript">
+
+                const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
+
+        if (toastTrigger) {
+          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+          toastTrigger.addEventListener('click', () => {
+            toastBootstrap.show()
+          })
+        }
+    </script>
+}
+

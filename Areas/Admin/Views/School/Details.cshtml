@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model EcdlBooking.ViewModel.CreateClassSchool;
+<h1> </h1>
+
+
+<div class=".container">
+    
+    <div class="card">
+        <h5 class="card-header">Visualizzazione School</h5>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@Model.Id_School</li>
+                <li class="list-group-item">@Model.Nome</li>
+                <li class="list-group-item">@Model.City</li>
+                <li class="list-group-item">@Model.indirizzo</li>
+            </ul>
+            <br />
+            <br />
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a asp-action="Index" class="btn btn-primary">Torna all Indice</a>
+        </div>
+    </div>
+
+</div>
+
+

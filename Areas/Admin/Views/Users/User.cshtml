@@ -1,0 +1,333 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+    @using EcdlBooking.Service.Interface;
+
+    @inject IUserRepository UserRepository
+
+*@
+@{
+    ViewData["Title"] = "Visualizza UTente";
+  
+    @using EcdlBooking.ViewModel;
+
+    @model Admin_Users_User;
+}
+
+
+
+<div class="container card d-flex">
+    <div class=" justify-content-center" style="width: 30rem;">
+       
+        <div class="card-body ">
+            <h5 class="card-title">Utente</h5>
+            <div class="container">
+                
+
+
+
+
+                <form  method="post"
+                      asp-area="Admin"
+                      asp-controller="Users"
+                      asp-action="Edit">
+
+                    <!-- Nome Utente  -->
+                    <div class="input-group mb-3">
+
+                        <label class="input-group-text border-success" asp-for="@Model.UserName"></label>
+                        <input type="text" class="form-control border-success" placeholder="Codice"
+                        asp-for="@Model.UserName"
+                               aria-label="Username" aria-describedby="basic-addon1" readonly>
+                    </div>
+
+                <!-- Codice Identificativo  -->
+                <div class="input-group mb-3">
+                    
+                    <label class="input-group-text border-success" asp-for="@Model.Id"></label>
+                    <input type="text" class="form-control border-success" placeholder="Codice"
+                           asp-for="@Model.Id"
+                           aria-label="Username" aria-describedby="basic-addon1" readonly>
+                </div>
+
+                <!-- Ruolo  -->
+
+                <div class="form-group">
+
+                    <label class="input-group-text border-success" asp-for="@Model.IdRuolo"></label>
+                    <select class="form-control border-success" aria-label="Select your country" 
+                    asp-for="@Model.IdRuolo"
+                    asp-items="@Model.ListRuoli">                          
+                    </select>
+                </div>
+
+
+                <!-- Scuola Id  -->
+
+                <div class="form-group">
+
+                    <label class="input-group-text border-success" asp-for="@Model.IdSchool"></label>
+                    <select class="form-control border-success" aria-label="Select your country"
+                            asp-for="@Model.IdSchool"
+                            asp-items="Model.ListSchool"
+                            >
+                    </select>
+                </div>
+
+
+
+                <!-- Nome  -->
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.Name"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.Name"
+                           aria-describedby="basic-addon1">
+                </div>
+
+                <!-- Cognome  -->
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.Surname"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.Surname"
+                           aria-describedby="basic-addon1">
+                </div>
+
+
+                <!-- Data di Nascita  -->
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.Born"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.Born"
+                           aria-describedby="basic-addon1">
+                </div>
+
+
+                <!-- Codice E mail  -->
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.Email"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.Email"
+                           aria-describedby="basic-addon1" >
+                </div>
+
+
+                <!-- Numero di telefono  -->
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.PhoneNumber"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.PhoneNumber"
+                           aria-describedby="basic-addon1">
+                </div>
+
+                <!-- Indirizzo  -->
+
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.Address"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.Address"
+                           aria-describedby="basic-addon1">
+                </div>
+
+                
+                <!--  Citta  -->
+
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.City"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.City"
+                           aria-describedby="basic-addon1">
+                </div>
+
+                <!-- Paese -->
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.Country"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.Country"
+                           aria-describedby="basic-addon1">
+                </div>
+
+
+
+                <!-- familyContactPerson -->
+
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.familyContactPerson"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.familyContactPerson"
+                           aria-describedby="basic-addon1">
+                </div>
+
+                <!-- familyContactPerson_phone -->
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.familyContactPerson_phone"></label>
+                    <input type="text" class="form-control border-success"
+                           asp-for="@Model.familyContactPerson_phone"
+                           aria-describedby="basic-addon1">
+                </div>
+
+
+
+                <!-- E mail della famiglia  -->
+
+                <div class="input-group mb-3">
+
+                    <label class="input-group-text border-success" asp-for="@Model.familyContactPerson_email"></label>
+                    <input type="email" class="form-control border-success"
+                           asp-for="@Model.familyContactPerson_email"
+                           aria-describedby="basic-addon1">
+                </div>
+
+
+
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+
+                    <a class="btn btn-primary btn-sm"
+                       asp-area="Admin"
+                       asp-controller="Users"
+                       asp-action="index"
+                       role="button"><i class="bi bi-arrow-left"></i> Lista Utenti
+                   </a>
+
+                    <button type="submit" class="btn  btn-primary btn-sm">
+                            Modifica
+                    </button>
+
+
+                </form>
+
+
+
+            </div>
+
+
+
+
+
+
+            
+
+        </div>
+    </div>
+
+</div>
+
+
+<!--
+
+
+                /*
+
+
+                [Required]
+                [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+                [DataType(DataType.Password)]
+                [Display(Name = "Password")]
+                public string Password { get; set; }
+
+                [DataType(DataType.Password)]
+                [Display(Name = "Confirm password")]
+                [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+                public string ConfirmPassword { get; set; }
+
+
+                // Numero Di telefono implementato da me in quanto
+                // non impementato dalllo scaffolden
+                //            [Required]
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.PhoneNumber)]
+                [Display(Name = "Numero Di Telefono")]
+                public string PhoneNumber { get; set; }
+
+
+
+                // Inizio dell utente OK
+                //[Required]
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.Text)]
+                [Display(Name = "Nome")]
+                public string Name { get; set; }
+
+                //[Required] OK
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.Text)]
+                [Display(Name = "Cognome")]
+                public string Surname { get; set; }
+
+                //            [Required] OK
+                [DataType(DataType.Date)]
+                [Display(Name = "Data di Nascita")]
+                public DateTime Born { get; set; }
+
+
+                [Required] OK
+
+                [EmailAddress]
+                [Display(Name = "Email")]
+                public string Email { get; set; }
+
+
+                //            [Required] Ok
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.Text)]
+                [Display(Name = "Indirizzo")]
+                public string Address { get; set; }
+
+                //            [Required] OK
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.Text)]
+                [Display(Name = "Città")]
+                public string City { get; set; }
+
+                //            [Required] OK
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.Text)]
+                [Display(Name = "Paese")]
+                public string Country { get; set; }
+
+                //            [Required]  OK
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.Text)]
+                [Display(Name = "Nome Genitori")]
+                public string familyContactPerson { get; set; }
+
+                //            [Required] OK
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.PhoneNumber)]
+                [Display(Name = "Genitore-Tel")]
+                public string familyContactPerson_phone { get; set; }
+
+                //            [Required]  OK
+                [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+                [DataType(DataType.EmailAddress)]
+                [Display(Name = "Genitore-Mail")]
+                public string familyContactPerson_email { get; set; }
+
+                /// Iserito in quanto non considerato nell implementazione
+                /// dell utente user standard
+
+
+                // Relativo all id della scuola
+                public Guid IdSchool { get; set; }
+
+                [Display(Name = "Scuole")]
+                public List<SelectListItem>
+                    ListSchool { get; set; } = null;
+
+                    public School School { get; set; }
+
+                */
+
+
+
+-->

@@ -1,0 +1,77 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+
+
+*@
+@{
+}
+
+@model EcdlBooking.Models.School
+
+
+
+<div class="container">
+
+    <p class="fs-2 btn-info">Modifica Scuola</p>
+
+    <div class="container">
+        <form asp-action="Edit" method="post">
+
+            <div class="row g-2">
+
+
+
+                <div class="col-4 g3">
+                    <label for="NomeInput" class="col-form-label">Nome</label>
+
+                </div>
+                <div class="col-8">
+                    <input type="text" 
+                        class="form-control" 
+                        asp-for="@Model.Name"
+                    id="NomeInput"
+                           placeholder="Nome">
+                </div>
+
+
+
+
+                <div class="col-4">
+                    <label for="AddressInput" class="col-form-label">Indirizzo</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" class="form-control"
+                    asp-for="@Model.Address"
+                            placeholder="Indirizzo">
+                </div>
+
+                <div class="col-4">
+                    <label for="CittaInput" class="col-form-label">Città</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" class="form-control" id="CittaInput"
+                            asp-for="@Model.City"
+                            placeholder="Città">
+                </div>
+
+                <div class="col-3">
+                    <button class="btn btn-info btn-sm" type="submit">Modifica</button>
+                </div>
+
+            </div>
+
+        </form>
+        </br>
+        <a type="button" class="btn btn-secondary btn-sm"
+        asp-action="index"
+        
+        >Torna All Indice</a>
+
+
+
+
+
+    </div>
+
+</div>

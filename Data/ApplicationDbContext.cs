@@ -72,10 +72,14 @@ namespace EcdlBooking.Data
             }
         }
         // Tabelle 
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<School> Schools { get; set; }
-        public DbSet<Class> classes { get; set; }
+        //public DbSet<Class> classes { get; set; }
 
         public DbSet<Exam> Exams { get; set; }
+
+        public DbSet<IdentityRole> Ruoli { get; set; }
+
+        public DbSet<ApplicationUser> Utenti { get; set; }
     }
 }

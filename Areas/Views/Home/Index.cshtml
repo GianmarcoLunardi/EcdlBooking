@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    @model Task<IEnumerable<EcdlBooking.Models.Exam>>;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Pagina Benvenuto</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+
+<div class="container">
+
+
+    @if (@Model != null)
+    {
+
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Ora Inizio</th>
+                    <th scope="col">Luogo</th>
+                    <th scope="col">Esaminatore</th>
+                    <th scope="col">  </th>
+
+            </thead>
+            <tbody>
+                <!--     sperimentazione     -->
+                @foreach (var i in await @Model)
+                {
+                    <tr>
+                        <td scope="col">@i?.Date.ToString("dd/MM/yyyy")</td>
+                        <td scope="col">@i?.Date.ToString("HH:MM")</td>
+                        <td scope="col"> @i.School.Name.ToString() </td>
+                        <td scope="col">Esaminatore </td>
+                        <td scope="col">
+                            <a type="button" class="btn btn-primary" asp-route="Querry">Prenota</a>
+                        </td>
+                    </tr>
+
+                }
+
+
+            </tbody>
+        </table>
+
+    }
+</div>
+
+
+
+
+
