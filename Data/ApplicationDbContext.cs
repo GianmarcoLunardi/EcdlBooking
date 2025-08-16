@@ -9,17 +9,34 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EcdlBooking.Configurazione;
 
 namespace EcdlBooking.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options){}
+            : base(options) { }
         // Seeding
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<School>().HasData(
+
+                new School { Name = Configurazione.Configurazione.ScuolaNome, City = Configurazione.Configurazione.ScuolaCitta }
+
+                );
+
+
+
+        }
 
         public static async Task CreateAdminAccount(IServiceProvider serviceProvider
 )
+
         {
             UserManager<ApplicationUser> userManager =
             serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
@@ -81,5 +98,7 @@ namespace EcdlBooking.Data
         public DbSet<IdentityRole> Ruoli { get; set; }
 
         public DbSet<ApplicationUser> Utenti { get; set; }
+
+        public DbSet<SchedulerEcdl> SchedulerExams { get; set; }
     }
 }

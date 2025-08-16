@@ -20,6 +20,12 @@ namespace EcdlBooking.Configurazione
         public static string ScuolaIndirizzo = "Via Roma";
         public static String ScuolaCitta = "Rovereto";
 
+        public static String ScuolaNome1 = "Ite Borsellino";
+        public static string ScuolaIndirizzo1 = "Via Pra Delle Suore";
+        public static String ScuolaCitta1 = "Brixen/Bressanone";
+
+
+
         // Costanti che definiscono i ruoli delgli utenti
 
         public const string Studente = "Studente";

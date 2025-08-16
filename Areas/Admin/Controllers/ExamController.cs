@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace EcdlBooking.Controllers
-{
+{ 
     [Area("admin")]
     public class ExamController : Controller
     {

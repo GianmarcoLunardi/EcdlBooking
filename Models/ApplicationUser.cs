@@ -41,5 +41,17 @@ namespace EcdlBooking.Models
 
         public List<Exam>? Esami { get; set; } = null;// In questo caso l esame può essere fatto da molti eaminatori (utento con funzione teacher)
 
+
+        /// inizio modifiche
+        /// Relazine  Con La Tabelle Scheduler Tabella Prenotazione
+        // lo studente sontirne uno o più esami
+        /*
+        [ForeignKey(nameof(SchedulerEcdl))]
+        public Guid IdScheduler { get; set; }
+        public ICollection<SchedulerEcdl> Reservation { get; set; }
+        */
+        ///  Fine Modifiche
+
+
     }
 }

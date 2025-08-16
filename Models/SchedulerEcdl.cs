@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,8 +11,19 @@ namespace EcdlBooking.Models
     {
         //Tabella Delle Prenotazioni Di tutti Gli Studenti
         public Guid Id { get; set; }
-        public string IdTeacher { get; set; }
-        public string IdStudent { get; set; }
+
+        /// inizio modifiche
+        /// 
+        /*
+        [ForeignKey(nameof(ApplicationUser))]
+        public string IdStudent{ get; set; }
+        public ICollection<ApplicationUser> Studente {get; set;}
+        */
+        ///  Fine Modifiche
+
+
+
+        //public string IdStudent { get; set; }
         // Chiave Esterna Alla Tabella Esame
         public string IdEsame { get; set; }
 

@@ -4,6 +4,7 @@ using EcdlBooking.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcdlBooking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250814212922_Seeding prima scuola")]
+    partial class Seedingprimascuola
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,27 +156,6 @@ namespace EcdlBooking.Data.Migrations
                     b.ToTable("Exams");
                 });
 
-            modelBuilder.Entity("EcdlBooking.Models.SchedulerEcdl", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdEsame")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TipoEsame")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Voto")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SchedulerExams");
-                });
-
             modelBuilder.Entity("EcdlBooking.Models.School", b =>
                 {
                     b.Property<Guid>("id")
@@ -197,7 +179,7 @@ namespace EcdlBooking.Data.Migrations
                     b.HasData(
                         new
                         {
-                            id = new Guid("c1173068-95b3-45ec-8466-9b162f24b803"),
+                            id = new Guid("bd6cd71e-c111-407d-9c06-edad2239cfb4"),
                             City = "Rovereto",
                             Name = "Iti G. Marconi"
                         });

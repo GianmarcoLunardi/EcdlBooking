@@ -121,6 +121,29 @@
 
                         <!-- fine menu studenti-->
 
+                        <!--Inserimento del Menu Calendario Degli Esami  -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="bi-sticky"></i> Calendario</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Scheduler"
+                                       asp-action="Index">Lista di Tutti Gli Esami</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Exam"
+                                       asp-action="Create">
+                                        Aggiungi Esami
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <!-- fine Menu Calendario Degli Esame-->
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
