@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcdlBooking", "EcdlBooking.csproj", "{6EDEAE34-462D-4E86-9239-0E69B3F0CE99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEcdlBooking", "..\TestEcdlBooking\TestEcdlBooking.csproj", "{7E359310-F21C-4A86-AD23-8D8B0B6EA48E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6EDEAE34-462D-4E86-9239-0E69B3F0CE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EDEAE34-462D-4E86-9239-0E69B3F0CE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EDEAE34-462D-4E86-9239-0E69B3F0CE99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E359310-F21C-4A86-AD23-8D8B0B6EA48E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E359310-F21C-4A86-AD23-8D8B0B6EA48E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E359310-F21C-4A86-AD23-8D8B0B6EA48E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E359310-F21C-4A86-AD23-8D8B0B6EA48E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

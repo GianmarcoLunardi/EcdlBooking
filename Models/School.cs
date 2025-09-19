@@ -10,7 +10,7 @@ namespace EcdlBooking.Models
     public class School
     {   
         [Key]
-        public Guid id { get; set; } = Guid.NewGuid();
+        public Guid id { get; set; } 
         public string Name { get; set; } 
         public string? Address { get; set; }
         public string? City { get; set; }

@@ -7,15 +7,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+/* 
+https://dbdiagram.io/d/Diagramma-Booking-ECDL-68cc48c45779bb7265234be5
+*/
+
 namespace EcdlBooking.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        //public string Classe { get; set; }
 
-        // Relazione con School
-        //public School School { get; set; }
-        //public Guid IdSchool { get; set; } 
 
 
         //public WebUser WebUser { get; set; }
@@ -31,10 +32,10 @@ namespace EcdlBooking.Models
 
         // Relazione con School indisca la relazione in quale scuola è inscritto
         // sia che ia un professore che sia un alunno
-        public Guid IdSchool { get; set; }
-        [ForeignKey(nameof(IdSchool))]
-        public School School { get; set; }
-        
+        public Guid IdSchool { get; set; } //Funziona
+        [ForeignKey(nameof(IdSchool))] //Ok funziona
+        public School School { get; set; } // Ok Funziona
+
 
         // Relazione con  l esaminatore
         // un esaminatore può fare più esami

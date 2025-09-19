@@ -87,5 +87,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{Area=User}/{controller=Studenti}/{action=Index}/{id?}");
 app.MapRazorPages();
-app.SeedStart(); // Inizializza il database e i dati di default 
 app.Run();

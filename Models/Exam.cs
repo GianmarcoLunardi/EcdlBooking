@@ -24,7 +24,7 @@ namespace EcdlBooking.Models {
         // Con questa relazione si indica in quale scuola si fa l esame in una scuola
 
         [ForeignKey(nameof(School))]
-        public Guid IdSchool { get; set; }
+        public Guid IdSchool { get; set; } //Ok Funziona 
         public School School { get; set; }
 
         //Relazione com L Esaminatore

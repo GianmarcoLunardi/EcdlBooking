@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +12,7 @@ namespace EcdlBooking.Models
     public class SchedulerEcdl
     {
         //Tabella Delle Prenotazioni Di tutti Gli Studenti
+        [Key]
         public Guid Id { get; set; }
 
         /// inizio modifiche
@@ -31,11 +34,11 @@ namespace EcdlBooking.Models
         // presentarsi all test 
         public float Voto { get; set; } = -1;
         //Contiene Quale Tipo tipo di Esame 
-        public Configurazione.Configurazione.ListaEsami TipoEsame { get; set; }
+        public List<SelectListItem> TipoEsame { get; set; }
 
 
 
-        //public SessionType Session { get; set; }
+
 
     }
 }
