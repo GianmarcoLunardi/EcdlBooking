@@ -5,6 +5,7 @@
 }
 @model List<EcdlBooking.Models.Exam>
 
+@*EcdlBooking\EcdlBooking\Areas\User\Views\Studenti\Index.cshtml *@
 
 <div class="bg-success p-2 text-white">
     <h1><i class="bi bi-calendar-day"></i>  Calendario Esami</h1>
@@ -23,14 +24,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach( var exam in Model){             
-			<tr>
-				<td> @exam.Data.ToLongDateString()</td>
-                <td>@exam.Ora.ToShortTimeString()</td>
-                <td>@exam.School.Name</td>
-                <td>@exam.Esaminatore.Name @exam.Esaminatore.Surname</td>
-            </tr>
-            }       
+
+            @if(Model!=null){
+            
+                @foreach( var exam in Model){             
+			        <tr>
+				        <td> @exam.Data.ToLongDateString()</td>
+                        <td>@exam.Ora.ToShortTimeString()</td>
+                        <td>@exam.School.Name</td>
+                        <td>@exam.Esaminatore.Name @exam.Esaminatore.Surname</td>
+                    </tr>
+            }       }
         </tbody>
     </table>
 

@@ -32,6 +32,7 @@ namespace EcdlBooking.Services.Repository
 
         List<Exam> IExamRepository.VisualizzaEsamiDaSostenere()
         {
+            /*
             List<Exam> ListaEsami =
 
             _db.Exams
@@ -40,6 +41,9 @@ namespace EcdlBooking.Services.Repository
                 .OrderBy(x => x.Data)
                 .ToList();
             return ListaEsami;
+            */
+
+            return null;
         }
 
 

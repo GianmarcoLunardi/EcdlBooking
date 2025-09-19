@@ -40,7 +40,8 @@ namespace EcdlBooking.Controllers
         public IActionResult Index()
         {
             var x = _unitOfWork.Esami.VisualizzaEsamiDaSostenere();
-                 return View(x);
+            return View(x);
+            
            
         }
 
