@@ -9,7 +9,7 @@
 <div class="container">
 
 
-    <form method="post" asp-area="Admin" asp-controller="Exam" asp-action="Create" >
+    <form method="post" asp-area="Admin" asp-controller="Exam" asp-action="CreatePost">
         <br>
         <!-- Data -->
         <div class="row g-3 align-items-center">
@@ -79,7 +79,8 @@
 
         <div class="row g-3 align-items-center">
             <div class="col-auto">
-                <label for="SelectImput" class="col-form-label" asp-for="@Model.EsaminatoreId">
+                <label for="SelectImput" class="col-form-label" 
+                asp-for="@Model.EsaminatoreId">
                    
                 </label>
             </div>
@@ -110,8 +111,8 @@
 
             <div class="col-auto">
                                 <select class="form-control border-success" aria-label="Select your country"
-                                        asp-for="@Model.PlaceSelected"
-                                        asp-items="@Model.PlaceList"
+                                        asp-for="@Model.LuogoEsameId"
+                                        asp-items="Model.PlaceList"
                                         >
                                 </select>
             </div>

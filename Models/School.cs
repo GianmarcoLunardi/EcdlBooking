@@ -10,7 +10,7 @@ namespace EcdlBooking.Models
     public class School
     {   
         [Key]
-        public Guid id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         public string Name { get; set; } 
         public string? Address { get; set; }
         public string? City { get; set; }
@@ -26,7 +26,7 @@ namespace EcdlBooking.Models
 
 
          //Relazione Con La tabella Della Scuole
-         //public List<ApplicationUser> ApplicationUsers { get; } = new List<ApplicationUser>();
+         public List<ApplicationUser> ApplicationUsers { get; set; } = new List<ApplicationUser>();
 
     }
 }

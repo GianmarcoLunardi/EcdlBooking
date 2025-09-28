@@ -10,7 +10,7 @@ namespace EcdlBooking.AutoMapper
         {
             CreateMap<School, CreateClassSchool>()
             // funzionale
-            .ForMember(dest => dest.Id_School, opt => opt.MapFrom(src => src.id))
+            .ForMember(dest => dest.Id_School, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Nome, opt => opt.MapFrom(src => src.Name)) // Personalizza se necessario
             .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
             .ForMember(dest => dest.indirizzo, opt => opt.MapFrom(src => src.Address))

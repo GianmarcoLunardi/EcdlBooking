@@ -48,7 +48,7 @@
                         <a asp-area="Admin"
                            asp-controller="School"
                            asp-action="Details"
-                           asp-route-id="@scuola.id">
+                           asp-route-id="@scuola.Id">
                             @scuola.Name <br />
                         </a>
                     </td>
@@ -63,7 +63,7 @@
                            asp-area="Admin"
                                asp-controller="School"
                            asp-action="Edit"
-                           asp-route-id="@scuola.id">
+                           asp-route-id="@scuola.Id">
                             <i class="bi bi-pencil"></i>
                         </a>
                             &nbsp
@@ -73,7 +73,7 @@
                                asp-area="Admin"
 							   asp-controller="School"
                                asp-action="Delete"
-                               asp-route-id="@scuola.id.ToString()"
+                               asp-route-id="@scuola.Id.ToString()"
                                role="button"><i class="bi bi-trash3-fill"></i></a>
 
 

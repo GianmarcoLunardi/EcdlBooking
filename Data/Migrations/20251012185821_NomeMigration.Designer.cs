@@ -4,6 +4,7 @@ using EcdlBooking.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcdlBooking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251012185821_NomeMigration")]
+    partial class NomeMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,25 +120,6 @@ namespace EcdlBooking.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "9f5de216-b03f-43d2-b0a1-4f9d6bb5c126",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1e569cc1-d487-4a7d-a1ac-39274065eb42",
-                            Email = "gianmarco.lunardi@iis-bressanone.edu.com",
-                            EmailConfirmed = true,
-                            IdSchool = new Guid("a361e1b4-5427-463c-abc8-f2f176821181"),
-                            LockoutEnabled = false,
-                            NormalizedEmail = "GIANMARCO.LUNARDI@IIS-BRESSANONE.EDU.COM",
-                            NormalizedUserName = "GIANMARCO_LUNARDI",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJk1vQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQw==",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "72a47951-3867-403d-9ee8-eaad38b9d269",
-                            TwoFactorEnabled = false,
-                            UserName = "Gianmarco_Lunardi"
-                        });
                 });
 
             modelBuilder.Entity("EcdlBooking.Models.Exam", b =>
@@ -185,43 +169,6 @@ namespace EcdlBooking.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Moduli");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("94f1d7b2-232b-4542-a395-98f97c371326"),
-                            Nome = "Computer Essentials"
-                        },
-                        new
-                        {
-                            Id = new Guid("c2642c79-1742-47a8-a7aa-18eb853b1906"),
-                            Nome = "Online Essentials"
-                        },
-                        new
-                        {
-                            Id = new Guid("2f67549b-efd9-4fb7-a84e-4837e519b925"),
-                            Nome = "Word Processing"
-                        },
-                        new
-                        {
-                            Id = new Guid("ff8dc93f-98b5-4f0e-a19b-5e7b85df3bdd"),
-                            Nome = "Spreadsheet"
-                        },
-                        new
-                        {
-                            Id = new Guid("a6d7b193-df8f-4691-9ea7-260dbd6c985c"),
-                            Nome = "Presentation"
-                        },
-                        new
-                        {
-                            Id = new Guid("c009dd27-ce86-4f24-80a1-f453e5a7612d"),
-                            Nome = "Online Collaboration"
-                        },
-                        new
-                        {
-                            Id = new Guid("663f6c0f-6843-4ddf-af2b-bd96503d1dbb"),
-                            Nome = "Database"
-                        });
                 });
 
             modelBuilder.Entity("EcdlBooking.Models.SchedulerEcdl", b =>

@@ -20,15 +20,25 @@
                 <th>Ora</th>
                 <th>Scuola</th>
                 <th>Esaminatore</th>
+                <th>Esame</th>
             </tr>
         </thead>
         <tbody>
             @foreach( var exam in Model){             
 			<tr>
-				<td> @exam.Data.ToLongDateString()</td>
+				<td>@exam.Data.ToLongDateString()</td>
                 <td>@exam.Ora.ToShortTimeString()</td>
                 <td>@exam.School.Name</td>
                 <td>@exam.Esaminatore.Name @exam.Esaminatore.Surname</td>
+                <td>
+                        <a class="btn btn-success" role="button"
+                        asp-area="User"
+                        asp-controller="Studenti"
+                        asp-action="PrenotaEsame"
+                        asp-root-id="@exam.id">
+                        Prenota
+                        </a>
+                </td>
             </tr>
             }       
         </tbody>

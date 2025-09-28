@@ -2,13 +2,18 @@
     Clasddr Generic
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{}
+@{
+    Layout = "_Layout";
+}
     @model List<EcdlBooking.Models.Exam>;
 
 
     <div class="container">
 
-        Pagina Esami
+    <div class="p-3 mb-2 bg-success text-white">Pagina Esami</div>
+
+
+        
 @if(@Model != null)
 {
 
@@ -29,14 +34,15 @@
             {
                 <tr>
                     <th scope="col">@i.Data.ToShortDateString()</th>
-                    <th scope="col">@i.Data.TimeOfDay</th>
+                    <th scope="col">@i.Ora.ToString("HH:MM")</th>
                     <th scope="col">@i.School.Name</th>
                     <th scope="col">@i.Esaminatore.Name<br />@i.Esaminatore.Surname</th>
                     <th scope="col">
                         <a type="button" class="btn btn-primary" asp-route="@i.id">Cancella</a>
+                        <!--
                         <a type="button" class="btn btn-primary" asp-route="@i.id">Modifica</a>
                         <a type="button" class="btn btn-primary" asp-route="@i.id">Visualizza</a>
-
+                            -->
 <th>
                 </tr>
 

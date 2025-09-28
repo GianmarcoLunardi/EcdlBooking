@@ -1,7 +1,7 @@
 ﻿@**@
 
 @{
-
+    Layout = "_Layout";
 
     //using EcdlBooking;
     //using System.Linq;
@@ -17,6 +17,8 @@
 
 
 }
+
+<div class="container">
 
 <!-- inizio Posizione dei tost -->
 <!--
@@ -57,7 +59,9 @@
 
 
 
-<p class="alert-light"> Utenti </p>
+
+    <div class="bg-success text-white fs-1">Utenti</div>
+ 
 
 
 <table class="table table-hover">
@@ -65,7 +69,7 @@
         <tr>
             <th scope="col">Username</th>
             <th scope="col">Nome Cognome</th>
-            <th scope="col">Città</th>
+            <th scope="col">Indirizzo</th>
             <th scope="col">Scuola</th>
             <th scope="col">Azioni</th>
         </tr>
@@ -77,29 +81,29 @@
             <tr>
                 <td>
 
-                    <a asp-action="User"
+                    <a
                     asp-controller="Users"
+                    asp-action="User"
                     asp-route-id="@x.Id">
                         @x.UserName
                     </a>
 
 
-
-
-
                 </td>
+
                 <td>
                     @x.Name @x.Surname
 
                 </td>
-                <td>@x.City</td>
+                <td>@x.Address <br /> @x.City</td>
                 <td>
                     
                     @x.School.Name
             </td>
             <td>
                 <!--Cancella -->
-                    <a type="button" class="btn btn-primary btn-sm"
+
+                    <a type="button" class="btn btn-success btn-sm"
                        id="liveToastBtn"
                        asp-controller="Users"
                        asp-action="Delete"
@@ -110,7 +114,8 @@
                     </a>
                     &nbsp;
                 <!--Modifica-->
-                    <a type="button" class="btn btn-primary btn-sm"
+
+                    <a type="button" class="btn btn-success btn-sm"
                             asp-controller="Users"
                             asp-action="User"
                             asp-route-id="@x.Id">
@@ -120,7 +125,7 @@
                     &nbsp;
                 <!--Visualizza-->
 
-                    <button type="button" class="btn btn-primary btn-sm"
+                    <button type="button" class="btn btn-success btn-sm"
                             asp-controller="School)"
                             asp-action="Details"
                             asp-route-id="@x.Id">
@@ -160,3 +165,5 @@
     </script>
 }
 
+
+</div>

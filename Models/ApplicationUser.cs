@@ -21,7 +21,7 @@ namespace EcdlBooking.Models
         //public WebUser WebUser { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
-        public DateTime Born { get; set; }
+        public DateTime? Born { get; set; }
         public string? Address { get; set; }
         public string? City { get; set; }
         public string?Country { get; set; }
@@ -31,15 +31,16 @@ namespace EcdlBooking.Models
 
         // Relazione con School indisca la relazione in quale scuola è inscritto
         // sia che ia un professore che sia un alunno
+        
+        [ForeignKey(nameof(School))]
         public Guid IdSchool { get; set; }
-        [ForeignKey(nameof(IdSchool))]
         public School School { get; set; }
         
 
         // Relazione con  l esaminatore
         // un esaminatore può fare più esami
 
-        public List<Exam>? Esami { get; set; } = null;// In questo caso l esame può essere fatto da molti eaminatori (utento con funzione teacher)
+        public List<Exam>? Esami { get; set; }// In questo caso l esame può essere fatto da molti eaminatori (utento con funzione teacher)
 
 
         /// inizio modifiche

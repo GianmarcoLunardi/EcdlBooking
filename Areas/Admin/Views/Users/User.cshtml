@@ -8,6 +8,8 @@
 *@
 @{
     ViewData["Title"] = "Visualizza UTente";
+
+    Layout = "_Layout";
   
     @using EcdlBooking.ViewModel;
 
@@ -20,7 +22,9 @@
     <div class=" justify-content-center" style="width: 30rem;">
        
         <div class="card-body ">
-            <h5 class="card-title">Utente</h5>
+
+            
+            <h5 class="card-title bg-success fs-6 text-white">Utente</h5>
             <div class="container">
                 
 
@@ -35,8 +39,9 @@
                     <!-- Nome Utente  -->
                     <div class="input-group mb-3">
 
-                        <label class="input-group-text border-success" asp-for="@Model.UserName"></label>
-                        <input type="text" class="form-control border-success" placeholder="Codice"
+                        <label class="input-group-text border-success bg-success text-white"
+                               asp-for="@Model.UserName"></label>
+                        <input type="text" class="form-control border-success bg-success bg-opacity-25" placeholder="Codice"
                         asp-for="@Model.UserName"
                                aria-label="Username" aria-describedby="basic-addon1" readonly>
                     </div>
@@ -54,13 +59,15 @@
 
                 <div class="form-group">
 
-                    <label class="input-group-text border-success" asp-for="@Model.IdRuolo"></label>
-                    <select class="form-control border-success" aria-label="Select your country" 
-                    asp-for="@Model.IdRuolo"
-                    asp-items="@Model.ListRuoli">                          
-                    </select>
+                    <label class="input-group-text border-success" asp-for="@Model.IdRuoli"></label>
+                    <select multiple  
+                    class="form-control border-success" 
+                    aria-label="Seleziona ilruolo"
+                                asp-for="@Model.IdRuoli"
+                                asp-items="@Model.ListRuoli">                          
+                                </select>
                 </div>
-
+                
 
                 <!-- Scuola Id  -->
 
@@ -192,14 +199,14 @@
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
 
-                    <a class="btn btn-primary btn-sm"
+                    <a class="btn btn-success btn-sm"
                        asp-area="Admin"
                        asp-controller="Users"
-                       asp-action="index"
+                       asp-action="Index"
                        role="button"><i class="bi bi-arrow-left"></i> Lista Utenti
                    </a>
 
-                    <button type="submit" class="btn  btn-primary btn-sm">
+                    <button type="submit" class="btn  btn-success btn-sm">
                             Modifica
                     </button>
 

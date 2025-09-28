@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    @model Task<IEnumerable<EcdlBooking.Models.Exam>>;
+    @model List<EcdlBooking.Models.Exam>;
 }
 
 
@@ -33,25 +33,35 @@
             </thead>
             <tbody>
                 <!--     sperimentazione     -->
-                @foreach (var i in await @Model)
+                @foreach (var i in @Model)
                 {
                     <tr>
                         <td scope="col">@i?.Data.ToString("dd/MM/yyyy")</td>
                         <td scope="col">@i?.Data.ToString("HH:MM")</td>
-                        <!--
+                        
                         <td scope="col"> 
-                            @*
+                          
                             @i.School.Name.ToString() 
-                            *@
+                           
                         </td>
-						-->
+					
 
-                        <td scope="col">Esaminatore </td>
+                        <td scope="col">@i.Esaminatore.Name.ToString() </td>
+                        <!--
+                            Pulsante Che Prenota L esame 
+                        -->
                         <td scope="col">
-                            <a type="button" class="btn btn-primary" asp-route="Querry">Prenota</a>
+                            <a type="button" class="btn btn-primary"
+                            asp-area="User"
+                            asp-controller="Studenti"
+                               asp-action="PrenotaEsame"
+                               asp-route-id="@i.id">
+                               Prenota
+                           </a>
                         </td>
                     </tr>
 
+                       
 
 
                   
@@ -62,9 +72,6 @@
             </tbody>
         </table>
 
-        <p>Ciaooooo</p>
-
-
 
     }
 
@@ -73,7 +80,7 @@
 </div>
 
 <!-- Prova Radio Botton Esempio-->
-
+C:\Users\Gianmarco Lunardi\Documents\Progetti\EcdlBooking\Areas\User\ViewsXX\Studenti\Index.cshtml
 Ciao
 
     <div class="b-example-divider"></div>

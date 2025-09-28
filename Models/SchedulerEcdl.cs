@@ -31,7 +31,7 @@ namespace EcdlBooking.Models
         // presentarsi all test 
         public float Voto { get; set; } = -1;
         //Contiene Quale Tipo tipo di Esame 
-        public Configurazione.Configurazione.ListaEsami TipoEsame { get; set; }
+        public Configurazione.Configurazione.ListaEsami? TipoEsame { get; set; }
 
 
 

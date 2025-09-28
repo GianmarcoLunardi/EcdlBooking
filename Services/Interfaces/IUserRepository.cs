@@ -9,8 +9,16 @@ namespace EcdlBooking.Services.Interfaces
         // restituisce il ruoli di un id utente
         // restituisce i ruolo possbili
 
-        public List<SelectListItem> DownList_Rule_User(Guid? IdUserRole = null);
+        public List<SelectListItem> DownList_Rule_User(IList<string> Ruoli);
+        
+        public Task<IList<string>> GetRulesIdAsync(ApplicationUser Utente);
+        // Funzione dhe Dato l utente restitutisce la lista degli id sei ruoli  
+
+
+
         public List<SelectListItem> DownList_Esaminatore();
+
+
         void Update(ApplicationUser user);
     }
 }

@@ -4,6 +4,7 @@ using EcdlBooking.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcdlBooking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251012190217_Seeding_Moduli")]
+    partial class Seeding_Moduli
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,25 +120,6 @@ namespace EcdlBooking.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "9f5de216-b03f-43d2-b0a1-4f9d6bb5c126",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1e569cc1-d487-4a7d-a1ac-39274065eb42",
-                            Email = "gianmarco.lunardi@iis-bressanone.edu.com",
-                            EmailConfirmed = true,
-                            IdSchool = new Guid("a361e1b4-5427-463c-abc8-f2f176821181"),
-                            LockoutEnabled = false,
-                            NormalizedEmail = "GIANMARCO.LUNARDI@IIS-BRESSANONE.EDU.COM",
-                            NormalizedUserName = "GIANMARCO_LUNARDI",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJk1vQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQwQkQw==",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "72a47951-3867-403d-9ee8-eaad38b9d269",
-                            TwoFactorEnabled = false,
-                            UserName = "Gianmarco_Lunardi"
-                        });
                 });
 
             modelBuilder.Entity("EcdlBooking.Models.Exam", b =>

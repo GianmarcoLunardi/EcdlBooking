@@ -12,32 +12,31 @@ namespace EcdlBooking.Services.Repository
 {
     public class   UserRepository : GenericRepo<ApplicationUser>, IUserRepository
     {
-        private readonly ApplicationDbContext _db;
-        //private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly RoleManager<IdentityRole> _roleManager;
 
+        ApplicationDbContext _db;
 
-        public UserRepository(ApplicationDbContext db 
-                             ) : base(db)
+        public UserRepository(ApplicationDbContext db ) : base(db)
         {
             _db = db;
         }
 
 
-        public List<SelectListItem> DownList_Rule_User(Guid? IdUserRole = null)
+        public List<SelectListItem> DownList_Rule_User(IList<string> Ruoli)
         {
 
-
+            //string NomeRuolo = Ruoli.First();
 
             List<SelectListItem> Lista = new List<SelectListItem>();
 
             //if (IdUser == null)
             //   .Roles
-            
-            Lista = _db.Ruoli.Select(Ruolo => new SelectListItem
+
+            Lista = _db.Ruoli.Distinct().Select(Ruolo => new SelectListItem
             {
                 Text = Ruolo.Name,
-                Value = Ruolo.Id
+                Value = Ruolo.Id,
+                //Selected = Ruolo.Name == NomeRuolo ///funziona ma non servw
+
             })
 
 
@@ -67,7 +66,21 @@ namespace EcdlBooking.Services.Repository
         */
 
 
+        public async Task<IList<string>> GetRulesIdAsync(ApplicationUser Utente) {
 
+
+            IList<string> ListaIdRuoli = new List<string>();
+
+            IList<string> IdRuoliUtenti= _db.UserRoles.Where(ur => ur.UserId == Utente.Id).Select(ur => ur.RoleId.ToString()).ToList();
+            /*
+            foreach (var NomeRuolo in roles)
+            {
+                // ListaIdRuoli.Add(_db.Ruoli.Where(r => r.Name == NomeRuolo).Select(r => r.Id).First());
+                ListaIdRuoli.Add( (_roleManager.FindByNameAsync(NomeRuolo).GetAwaiter().GetResult()).Id );
+            }
+            */
+            return IdRuoliUtenti;
+        }
 
 
 

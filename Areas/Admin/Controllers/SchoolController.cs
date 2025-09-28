@@ -64,7 +64,7 @@ namespace EcdlBooking.Controllers
         // GET: SchoolController/Details/5
         public ActionResult Details(Guid id)
         {
-            School Scuola =_unitOfWork.School.GetFirstOrDefault(s => s.id == Guid.Parse(id.ToString()) );
+            School Scuola =_unitOfWork.School.GetFirstOrDefault(s => s.Id == Guid.Parse(id.ToString()) );
             
 
             return View(_mapper.Map<CreateClassSchool>(Scuola));
@@ -171,7 +171,7 @@ namespace EcdlBooking.Controllers
         // GET: SchoolController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            School scuola = _unitOfWork.School.GetFirstOrDefault(scuola => scuola.id == id);
+            School scuola = _unitOfWork.School.GetFirstOrDefault(scuola => scuola.Id == id);
 
             return View(scuola);
         }
@@ -196,7 +196,7 @@ namespace EcdlBooking.Controllers
             //Console.WriteLine($" entrata del delete {id}");
 
             //Ricerca Dell Entità School
-            School scuola  = _unitOfWork.School.GetFirstOrDefault(x => x.id == id);
+            School scuola  = _unitOfWork.School.GetFirstOrDefault(x => x.Id == id);
 
             _logger.LogInformation("Siamo arrivati alla cancellazione -----> " + id);
            _unitOfWork.School.delete(scuola);

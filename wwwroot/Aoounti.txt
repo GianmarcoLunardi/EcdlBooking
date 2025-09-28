@@ -1,0 +1,5 @@
+﻿Generatore di Guid
+https://guidgenerator.com/
+
+        // Schema Relazionale Della Base Dati
+        https://dbdiagram.io/d/Diagramma-Booking-ECDL-68cc48c45779bb7265234be5

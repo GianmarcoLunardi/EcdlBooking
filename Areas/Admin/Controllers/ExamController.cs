@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EcdlBooking.Configurazione;
+
 
 namespace EcdlBooking.Controllers
 { 
@@ -53,6 +55,8 @@ namespace EcdlBooking.Controllers
         async public Task<ActionResult> Create()
         {
 
+            
+
             //Creazione di un nuovo ViewModel Riguardante L' esame
             Admin_Exam_Create x = new Admin_Exam_Create();
 
@@ -62,7 +66,7 @@ namespace EcdlBooking.Controllers
 
             string UtenteProf = Configurazione.Configurazione.Insegnante;
             x.EsaminatoreLista = _userManager.Users
-                //.where(u =>  await _userManager.IsInRoleAsync(u, UtenteProf) )
+                //.where(u =>  await _userManager.IsInRoleAsync(u, Configurazione.Configurazione.ListaRuoli) )
                 
                 .Select(p => new SelectListItem
                 {
@@ -80,6 +84,14 @@ namespace EcdlBooking.Controllers
             return View(x);
             
         }
+        async public Task<ActionResult> CreatePost(Admin_Exam_Create esame)
+        {
+            CreateExam(esame);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
 
         // Inizio dell API
 
@@ -113,10 +125,34 @@ namespace EcdlBooking.Controllers
         }
 
 
-                #endregion
+        #endregion
 
-                        // POST: ControllerController/Create
-                        [HttpPost]
+
+        // POST: ControllerController/Create
+        [HttpPost("/api/Exam/Add")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateExam(Admin_Exam_Create esame)
+        {
+            if (ModelState.IsValid)
+            {
+                //Salvataggio dell' esame
+                Exam newExam = _mapper.Map<Exam>(esame);
+                
+                _unitOfWork.Esami.add(newExam);
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            return Ok(esame);
+        }
+
+
+
+
+
+
+
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Createx(IFormCollection collection)
         {

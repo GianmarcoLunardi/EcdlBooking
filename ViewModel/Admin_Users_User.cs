@@ -98,12 +98,12 @@ namespace EcdlBooking.ViewModel
             public string familyContactPerson_phone { get; set; }
 
         //            [Required]
-        [ValidateNever]
+        
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
             [DataType(DataType.EmailAddress)]
             [Display(Name = "Genitore-Mail")]
             public string familyContactPerson_email { get; set; }
-
+     
         /// Iserito in quanto non considerato nell implementazione
         /// dell utente user standard
 
@@ -121,15 +121,17 @@ namespace EcdlBooking.ViewModel
 
         // Ruolo dell utente
 
-        // Relativo all id della scuola
-        [Display(Name = "Ruolo")]
-        public Guid IdRuolo { get; set; }
 
 
         // Menu Dei Ruoli
         [ValidateNever]
+        [Display(Name = "Ruoli")]
         public List<SelectListItem> ListRuoli { get; set; } = null;
 
+
+        // Sono i diversi id dei ruoli coperti dall utente
+        [ValidateNever]
+        public IList<string> IdRuoli { get; set; } = null;
 
 
 

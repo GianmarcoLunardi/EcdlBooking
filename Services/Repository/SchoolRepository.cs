@@ -34,7 +34,7 @@ namespace EcdlBooking.Services.Repository
                  new SelectListItem
                  {
                      Text = i.Name,
-                     Value = i.id.ToString(),
+                     Value = i.Id.ToString(),
                      Selected = false
                  })
 

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EcdlBooking.Models.Modulo>
+
+@{
+    ViewData["Title"] = "Calendari Degli Esami";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">
+        <button type="button" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i>
+            </button>
+        
+        </a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">
+                        <button type="button" class="btn btn-primary btn-sm">
+                            <i class="bi bi-clipboard2-check"></i>
+                        </button>
+                        
+                    </a>
+                    <pre>  </pre>
+                    <a asp-action="Delete" asp-route-id="@item.Id">
+                        <button type="button" class="btn btn-danger btn-sm">
+                        <i class="bi bi-x-lg"></i>
+                        </button>
+                    </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

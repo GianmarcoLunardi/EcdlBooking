@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using EcdlBooking.Configurazione;
+using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,11 +23,14 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // inserimento del servizio di automapper
 
-//builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(typeof(ExamProfile), 
+                               typeof(UserProfile),
+                               typeof(SchoolProfile));
+/*
 builder.Services.AddAutoMapper(typeof(UserProfile));
 builder.Services.AddAutoMapper(typeof(SchoolProfile));
 builder.Services.AddAutoMapper(typeof(ExamProfile));
-
+*/
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
@@ -86,6 +90,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{Area=User}/{controller=Studenti}/{action=Index}/{id?}");
-app.MapRazorPages();
-app.SeedStart(); // Inizializza il database e i dati di default 
+app.MapRazorPages(); 
 app.Run();

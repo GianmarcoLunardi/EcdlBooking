@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace EcdlBooking.Controllers
 {
     [Area("User")]
-    [Authorize]
+    
     public class StudentiController : Controller
     {
         private readonly ILogger<StudentiController> _logger;
@@ -36,13 +36,26 @@ namespace EcdlBooking.Controllers
             _unitOfWork = unitOfWork;
         }
 
+
+        // visualizza solo il contenuto del calendario degli esami
         [AllowAnonymous]
         public IActionResult Index()
         {
-            var x = _unitOfWork.Esami.VisualizzaEsamiDaSostenere();
+            List<Exam> x =  _unitOfWork.Esami.VisualizzaEsamiDaSostenere();
                  return View(x);
            
         }
+
+
+        
+        [HttpPut]
+        public IActionResult PrenotaEsame( Guid id)
+        {
+
+            return View(id);
+        }
+        
+
 
         public IActionResult VisualizzaEsami()
         {

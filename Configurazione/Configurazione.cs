@@ -34,12 +34,13 @@ namespace EcdlBooking.Configurazione
 
         // Configurazione Degli utenti di default
 
-        public static string UtenteUser = "Admin";
-        public static string UtenteNome = "Gianmarco";
-        public static string UtenteCognome = "Lunardi";
-        public static string UtentePws = "Admin";
-        public static string EmailUser = "gianmarco.lunardi@iid-bressanone.edu.com";
+        public static string adminUserName = "gianmarco.lunardi@iid-bressanone.edu.com";
+        public static string adminEmail = "gianmarco.lunardi@iid-bressanone.edu.com";
+        public static string adminNome = "Gianmarco";
+        public static string adminCognome = "Lunardi";
+        public static string adminPws = "Admin";
 
+       
         public static List<string> ListaRuoli = new List<string> { Studente, Insegnante, Amministratore };
 
         public enum ListaEsami
@@ -51,10 +52,7 @@ namespace EcdlBooking.Configurazione
             [Description("Esame Tre")]
             EsameTre
         }
-        public static void SeedStart(this IApplicationBuilder app)
-        {
-            SeedStore(app).GetAwaiter().GetResult();
-        }
+
 
 
 
@@ -79,20 +77,9 @@ namespace EcdlBooking.Configurazione
                 */
 
 
-                // Inserimento del ruolo Teacher
-                if (await roleManager.FindByNameAsync(Configurazione.Insegnante) == null)
-                {
-                    // inserisce il ruolo insegnabte
-                    await roleManager.CreateAsync(new IdentityRole(Configurazione.Insegnante));
 
-                }
 
-                if (await roleManager.FindByNameAsync(Configurazione.Studente) == null)
-                {
-                    // inserisce il ruolo insegnabte
-                    await roleManager.CreateAsync(new IdentityRole(Configurazione.Studente));
 
-                }
 
                 // Inserimento della Scuola di default
 
