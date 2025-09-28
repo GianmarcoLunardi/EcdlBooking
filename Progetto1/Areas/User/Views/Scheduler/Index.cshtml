@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+
+}
+@using EcdlBooking.Configurazione;
+@model EcdlBooking.ViewModel.Admin_Scheduler_Index;
+
+
+<h1 class="p-3 mb-2 bg-success text-white">Prenotazione Esame</h1>
+<br />
+<br />
+
+<div class="container">
+    <!-- Content Begin -->
+
+
+    <form action="/" method="post">
+
+
+    <!-- id Inizi  -->
+    
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label asp-for="id" class="col-form-label-sm"></label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control-sm" asp-for="@Model.id" >
+        </div>
+        <div class="col-auto">
+            <span id="passwordHelpInline" class="form-text">
+                Must be 8-20 characters long.
+            </span>
+        </div>
+    </div>
+
+    <!-- Id Enf-->
+    <!-- Nome Cognome Studente  Begin-->
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label asp-for="@Model.NomeStudente" class="col-form-label-sm"></label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control-sm" asp-for="@Model.NomeStudente">
+        </div>
+        <div class="col-auto">
+            <span id="passwordHelpInline" class="form-text">
+                Must be 8-20 characters long.
+            </span>
+        </div>
+    </div>
+    <!--Nome Cognome Studente End -->
+
+    <!-- Data Esame  Begin-->
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label asp-for="@Model.Data" class="col-form-label-sm"></label>
+        </div>
+        <div class="col-auto">
+                <input type="text" class="form-control-sm" asp-for="@Model.Data" asp-format="{0:dd MMM yy}">
+        </div>
+        <div class="col-auto">
+            <span id="passwordHelpInline" class="form-text">
+                Must be 8-20 characters long.
+            </span>
+        </div>
+    </div>
+    <!--Data Esame End -->
+
+
+    <!-- Ora Dell Esame  Begin-->
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label asp-for="@Model.Ora" class="col-form-label-sm"></label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control-sm" asp-for="@Model.Ora" asp-format="{0:HH:MM}">
+        </div>
+        <div class="col-auto">
+            <span id="passwordHelpInline" class="form-text">
+                Must be 8-20 characters long.
+            </span>
+        </div>
+    </div>
+    <!--Ora Dell Esame  End -->
+
+    <!-- Scelta Dell Esame Da Sostene Begin-->
+    <label asp-for="@Model.id"></label>
+    <select asp-for="@Model.TipoEsame" asp-items="Configurazione.MenuEsami()" class="form-control">
+        <option value="">-- Seleziona categoria --</option>
+    </select>
+    <!-- Scelta Dell Esame Da Sostene End-->
+
+    <!-- Voto Begin-->
+    <label asp-for="@Model.Voto"></label>
+    <input type="number" asp-for="@Model.Voto" class="form-control-sm">
+    </input>
+    <!-- Voto End-->
+        <button type="submit" class="btn btn-success btn-sm">Small button</button>
+
+</form>
+    <!-- Content End -->
+</div>
+
+
+
+<!--
+
+        // Prenotazione
+        public Guid id { get; set; }
+
+        
+        public string NomeStudente { get; set; }
+        public String CpgnomeStudente { get; set; }
+
+      //Esame
+        public DateTime Data { get; set; } // Data del Esame
+
+        public DateTime Ora { get; set; } // ora Del Esame
+        public string Luogo { get; set; } // puo contenere solo valori Aperti Chiuso
+
+        // Lista A Tendina Deglie Esami
+        public String TipoEsame { get; set; }
+
+
+        [Display(Name = "Tipo Esame")]
+        public String LuogoEsame { get; set; }
+
+        [Display(Name = "Voto")]
+        public float Voto { get; set; }
+
+
+
+
+-->
