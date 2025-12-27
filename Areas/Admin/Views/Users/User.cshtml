@@ -34,7 +34,8 @@
                 <form  method="post"
                       asp-area="Admin"
                       asp-controller="Users"
-                      asp-action="Edit">
+                      asp-action="Edit"
+                       >
 
                     <!-- Nome Utente  -->
                     <div class="input-group mb-3">
@@ -89,7 +90,10 @@
                     <label class="input-group-text border-success" asp-for="@Model.Name"></label>
                     <input type="text" class="form-control border-success"
                            asp-for="@Model.Name"
-                           aria-describedby="basic-addon1">
+                           aria-describedby="basic-addon1"
+                               min="3" 
+                               max="25"
+                               required>
                 </div>
 
                 <!-- Cognome  -->

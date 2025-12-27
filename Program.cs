@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using EcdlBooking.Configurazione;
 using Microsoft.Extensions.DependencyInjection;
+using EcdlBooking.Services.IService;
+using EcdlBooking.Services.Service;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -57,16 +59,18 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-
-
 
 
 // inserimento dei servizi
-//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUteneteService, UteneteService>();
 
 var app = builder.Build();
+// chiamata del seeding statico / dinamico
+await Configurazione.SeedAsync(app.Services);
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

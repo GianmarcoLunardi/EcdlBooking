@@ -2,9 +2,10 @@
 {
     public interface IUnitOfWork
     {
-        ISchoolRepository School { get; }
+        public ISchoolRepository School { get; }
         public IUserRepository Utente { get;}
-        IExamRepository Esami { get; }
+        public IExamRepository Esami { get; }
+        public ISchedulerEcdlRepository SchedulerEcdl { get;}
         Task Save();
     }
 }

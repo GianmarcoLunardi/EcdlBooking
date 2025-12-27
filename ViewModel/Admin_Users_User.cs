@@ -51,7 +51,7 @@ namespace EcdlBooking.ViewModel
 
             // Inizio dell utente 
             //[Required]
-            [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [StringLength (20 , MinimumLength = 3, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.")]
             [DataType(DataType.Text)]
             [Display(Name = "Nome")]
             public string Name { get; set; }

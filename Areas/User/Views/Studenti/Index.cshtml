@@ -6,6 +6,7 @@
 @model List<EcdlBooking.Models.Exam>
 
 
+
 <div class="bg-success p-2 text-white">
     <h1><i class="bi bi-calendar-day"></i>  Calendario Esami</h1>
 </div>
@@ -31,13 +32,37 @@
                 <td>@exam.School.Name</td>
                 <td>@exam.Esaminatore.Name @exam.Esaminatore.Surname</td>
                 <td>
-                        <a class="btn btn-success" role="button"
-                        asp-area="User"
-                        asp-controller="Studenti"
-                        asp-action="PrenotaEsame"
-                        asp-root-id="@exam.id">
-                        Prenota
-                        </a>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <p>Benvenuto, sei loggato!</p>
+
+                            <a class="btn btn-success"
+                               role="button"
+                               asp-area="User"
+                               asp-controller="Studenti"
+                               asp-action="PrenotaEsame"
+                               asp-root-id="@exam.ToString()">
+                                Prenota Esame
+                            </a>
+                        }
+                        else
+                        {
+                            <p>Non sei autenticato.</p>
+                            
+                            <a class="btn btn-success"
+                               role="button"
+                               asp-area="User"
+                               asp-controller="Studenti"
+                               asp-action="PrenotaEsame"
+                               asp-root-id="@exam.ToString()">
+                                Prenota Esame
+                            </a>
+
+                        }
+
+
+
                 </td>
             </tr>
             }       

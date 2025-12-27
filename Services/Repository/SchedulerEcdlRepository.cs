@@ -1,40 +1,45 @@
 ﻿using EcdlBooking.Data;
 using EcdlBooking.Models;
 using EcdlBooking.Services.Interfaces;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcdlBooking.Services.Repository
 {
-    public class ExamRepository : GenericRepo<Exam>, IExamRepository 
+    public class SchedulerEcdlRepository : GenericRepo<SchedulerEcdl>, ISchedulerEcdlRepository
+
     {
         private readonly ApplicationDbContext _db;
 
-        public ExamRepository(ApplicationDbContext db) : base(db)
+        public SchedulerEcdlRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Exam esame)
+        public void Update(SchedulerEcdl esame)
         {
-            _db.Exams.Update(esame);
+            _db.SchedulerExams.Update(esame);
         }
 
-        public List<Exam> VisualizzaEsami()
+
+        public List<SchedulerEcdl> VisualizzaEsami()
         {
-
-            List<Exam> ListaEsami =
-
+            /*
+            List<SchedulerEcdl> ListaEsami =
+            
             _db.Exams
                 .Include(esaminatore => esaminatore.Esaminatore)
                 .Include(scuole => scuole.School)
                 .ToList();
-
-            return ListaEsami;  
-
+            return ListaEsami; 
+            */
+            return null; 
         }
+        
+
 
         public List<Exam> VisualizzaEsamiDaSostenere()
-        {
+        {/*
             List<Exam> ListaEsami =
 
             _db.Exams
@@ -43,8 +48,10 @@ namespace EcdlBooking.Services.Repository
                 .OrderBy(x => x.Data)
                 .ToList();
             return ListaEsami;
+        */
+        return null;
         }
 
-
+     
     }
 }

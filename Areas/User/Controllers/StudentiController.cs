@@ -17,7 +17,6 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace EcdlBooking.Controllers
 {
     [Area("User")]
-    
     public class StudentiController : Controller
     {
         private readonly ILogger<StudentiController> _logger;
@@ -45,14 +44,10 @@ namespace EcdlBooking.Controllers
                  return View(x);
            
         }
-
-
-        
-        [HttpPut]
-        public IActionResult PrenotaEsame( Guid id)
+        public IActionResult PrenotaEsame()
         {
 
-            return View(id);
+            return View();
         }
         
 

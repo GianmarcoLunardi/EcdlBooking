@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
+using EcdlBooking.Configurazione;
 using EcdlBooking.Models;
 using EcdlBooking.Services.Interfaces;
+using EcdlBooking.Services.IService;
 using EcdlBooking.ViewModel;
-
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EcdlBooking.Configurazione;
 
 
 namespace EcdlBooking.Controllers
@@ -23,6 +23,7 @@ namespace EcdlBooking.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
+        private readonly IUteneteService _utenteService;
 
 
 
@@ -30,13 +31,15 @@ namespace EcdlBooking.Controllers
             IUnitOfWork unitOfWork,
             RoleManager<IdentityRole> roleManager,
             UserManager<ApplicationUser> userManager,
-            IMapper mapper
+            IMapper mapper,
+            IUteneteService uteneteService
             )
         { 
             _unitOfWork = unitOfWork;
             _roleManager = roleManager;
             _userManager = userManager;
             _mapper = mapper;
+            _utenteService = uteneteService;
         }
 
         // GET: ControllerController
@@ -60,22 +63,21 @@ namespace EcdlBooking.Controllers
             //Creazione di un nuovo ViewModel Riguardante L' esame
             Admin_Exam_Create x = new Admin_Exam_Create();
 
-            x.PlaceList = _unitOfWork.School.GetCategoryListForDropDown(null).ToList();
+            x.LuogoEsameLista = _unitOfWork.School.GetCategoryListForDropDown(null).ToList();
 
+            //x.EsaminatoreLista = await _unitOfWork.Utente.ListaEsaminatori();
             //Inserimento della drop list degli esaminatori
+            x.EsaminatoreLista =await  _utenteService.DownList_Esaminatori_Esame();
+            //string UtenteProf = Configurazione.Configurazione.Insegnante;
+            //IList<ApplicationUser> ListaUtenti = _userManager.Users.ToList<ApplicationUser>();
+            //x.EsaminatoreLista =
+            //   ListaUtenti.Where(u => x is int ) ;
 
-            string UtenteProf = Configurazione.Configurazione.Insegnante;
-            x.EsaminatoreLista = _userManager.Users
-                //.where(u =>  await _userManager.IsInRoleAsync(u, Configurazione.Configurazione.ListaRuoli) )
-                
-                .Select(p => new SelectListItem
-                {
-                    Text = p.Name + " " + p.Surname,
-                    Value = p.Id,
-                })
-              
-                .ToList();
-            
+
+
+            //_userManager.IsInRoleAsync(u, UtenteProf).GetAwaiter().GetResult));
+
+
 
 
 
@@ -84,6 +86,12 @@ namespace EcdlBooking.Controllers
             return View(x);
             
         }
+
+        private void toList()
+        {
+            throw new NotImplementedException();
+        }
+
         async public Task<ActionResult> CreatePost(Admin_Exam_Create esame)
         {
             CreateExam(esame);
@@ -106,8 +114,8 @@ namespace EcdlBooking.Controllers
             //Relazione Sul Luogo Dell Asame
             Exam Esame = _mapper.Map<Exam>(x);
             // Inserisco i l oggetto Scuola in cui si fa l esame
-            Esame.School = _unitOfWork.School.Find(x.PlaceSelected);
-            Esame.IdSchool = x.PlaceSelected;
+            Esame.School = _unitOfWork.School.Find(x.LuogoEsameId);
+            Esame.IdSchool = x.LuogoEsameId;
             //Relazione 
             Esame.Esaminatore =await  _userManager.FindByIdAsync(x.EsaminatoreId.ToString());
             Esame.IdEsaminatore = x.EsaminatoreId;
@@ -137,7 +145,13 @@ namespace EcdlBooking.Controllers
             {
                 //Salvataggio dell' esame
                 Exam newExam = _mapper.Map<Exam>(esame);
-                
+                // aggiungere le rlazioni
+                newExam.Esaminatore = _unitOfWork.Utente.GetAll()
+                   .FirstOrDefault(e => e.Id == esame.EsaminatoreId.ToString());
+
+                newExam.School = _unitOfWork.School.GetAll()
+                   .FirstOrDefault(s=> s.Id == esame.LuogoEsameId)
+                   ;
                 _unitOfWork.Esami.add(newExam);
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));

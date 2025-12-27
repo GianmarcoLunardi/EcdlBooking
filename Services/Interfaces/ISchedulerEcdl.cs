@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EcdlBooking.Services.Interfaces
 {
-    public interface IExamRepository : IGenericRepo<Exam>
+    public interface ISchedulerEcdlRepository : Interfaces.IGenericRepo<SchedulerEcdl>
     {
 
         //public List<SelectListItem> DownList_Rule_User(Guid? IdUserRole = null);
-        List<Exam> VisualizzaEsami();
+        List<SchedulerEcdl> VisualizzaEsami();
         List<Exam> VisualizzaEsamiDaSostenere();
        
-        void Update(Exam esame);
+        void Update(SchedulerEcdl esame);
     }
 }
 

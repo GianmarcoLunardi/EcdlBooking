@@ -31,13 +31,13 @@ namespace EcdlBooking.ViewModel
         [ValidateNever]
         public List<SelectListItem> EsaminatoreLista { get; set; }
 
-
+        /*
         // Aggiunta Della Lista DDei Luoghi Deop Down
         [Display(Name = "Luogo del esame")]
         public Guid PlaceSelected { get; set; }
         
         [ValidateNever]
         public List<SelectListItem> PlaceList { get; set; } = new List<SelectListItem>();
-        
+        */
     }
 }

@@ -8,16 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
+using System.Threading.Tasks;
 namespace EcdlBooking.Services.Repository
 {
     public class   UserRepository : GenericRepo<ApplicationUser>, IUserRepository
     {
 
-        ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public UserRepository(ApplicationDbContext db ) : base(db)
+
+        public UserRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        
         }
 
 
@@ -87,10 +90,14 @@ namespace EcdlBooking.Services.Repository
 
         public async Task<List<SelectListItem>> ListaEsaminatori()
         {
+            /*
+            if ( _user_
+                
+                )
             List<SelectListItem> Lista = new List<SelectListItem>();
 
-            //if (IdUser == null)
-            //   .Roles
+            
+            
 
             Lista = _db.Ruoli
                 .Where(utente => utente.Name == "Esaminatore")
@@ -102,8 +109,8 @@ namespace EcdlBooking.Services.Repository
 
 
                 .ToList();
-
-            return Lista;
+            */
+            return null;
         }
 
         public Task<IEnumerable<ApplicationUser>> All_School(PageInfo page = null)
@@ -142,14 +149,10 @@ namespace EcdlBooking.Services.Repository
         public void Update(ApplicationUser user)
         {
 
-             _db.Utenti.Update(user);
+             _db.ApplicationUsers.Update(user);
             //throw new NotImplementedException();
         }
 
-        public List<SelectListItem> DownList_Esaminatore()
-        {
-            throw new NotImplementedException();
-        }
 
 
 

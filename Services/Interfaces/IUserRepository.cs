@@ -16,7 +16,10 @@ namespace EcdlBooking.Services.Interfaces
 
 
 
-        public List<SelectListItem> DownList_Esaminatore();
+
+        // task ritorna un TResult
+        public Task<List<SelectListItem>> ListaEsaminatori();
+        
 
 
         void Update(ApplicationUser user);

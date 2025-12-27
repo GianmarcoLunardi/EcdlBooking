@@ -1,4 +1,5 @@
 ﻿using EcdlBooking.Data;
+using EcdlBooking.Models;
 using EcdlBooking.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System.Runtime.CompilerServices;
@@ -17,6 +18,8 @@ namespace EcdlBooking.Services.Repository
             School = new SchoolRepository(_db);
             Utente = new UserRepository(_db);
             Esami = new ExamRepository(_db);
+            SchedulerEcdl = new SchedulerEcdlRepository(_db);
+
 
         }
 
@@ -35,6 +38,7 @@ namespace EcdlBooking.Services.Repository
         public ISchoolRepository School { get; private set; }
         public IUserRepository Utente { get; private set;  }
         public IExamRepository Esami { get; private set; }
+        public ISchedulerEcdlRepository SchedulerEcdl { get; private set; }
     }
     
 }

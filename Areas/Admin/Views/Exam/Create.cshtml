@@ -1,14 +1,19 @@
-﻿
+﻿ 
 @{
     ViewData["Title"] = "Create";
 
 }
 @model EcdlBooking.ViewModel.Admin_Exam_Create;
-<h1>Nuovo Esame</h1>
+
 
 <div class="container">
-
-
+    <div class="p-3 mb-2 bg-success text-white">
+        <h1>
+            <i class="bi bi-file-earmark-text"></i>  Nuovo Esame
+        </h1>
+    </div>
+    <br />
+    <br />
     <form method="post" asp-area="Admin" asp-controller="Exam" asp-action="CreatePost">
         <br>
         <!-- Data -->
@@ -105,14 +110,14 @@
         <div class="row g-3 align-items-center">
             <div class="col-auto">
 
-                <label class="input-group-text border-success" asp-for="@Model.PlaceSelected"></label>
+                <label class="input-group-text border-success" asp-for="@Model.LuogoEsameId"></label>
 
             </div>
 
             <div class="col-auto">
                                 <select class="form-control border-success" aria-label="Select your country"
                                         asp-for="@Model.LuogoEsameId"
-                                        asp-items="Model.PlaceList"
+                                        asp-items="Model.LuogoEsameLista"
                                         >
                                 </select>
             </div>
@@ -121,7 +126,7 @@
 
                 <!-- Invio dati -->
                 <br>
-                <button type="submit" class="btn btn-danger">Aggiungi</button>
+        <button type="submit" class="btn bg-success">Aggiungi</button>
 </form>
     <br />
     <br />

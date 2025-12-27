@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -76,6 +77,7 @@ namespace EcdlBooking.Controllers
 
             Maschera.ListSchool = _unitOfWork.School.GetCategoryListForDropDown(Maschera.IdSchool).ToList();
             Maschera.ListRuoli = _unitOfWork.Utente.DownList_Rule_User( await _userManager.GetRolesAsync(utente)).ToList();
+            
             Maschera.IdRuoli = _unitOfWork.Utente.GetRulesIdAsync(utente).GetAwaiter().GetResult();
 
 
@@ -136,9 +138,12 @@ namespace EcdlBooking.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Admin_Users_User Utente)
         {
+            _Logger.LogInformation("inizio procedura aggiornamento utente");
+
             if (ModelState.IsValid)
             {
 
+                _Logger.LogInformation("ModelView Validato");
 
                 ApplicationUser ModelUtente = _userManager.FindByIdAsync(Utente.Id.ToString()).GetAwaiter().GetResult();
 
