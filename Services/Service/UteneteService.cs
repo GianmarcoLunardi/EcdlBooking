@@ -25,8 +25,7 @@ namespace EcdlBooking.Services.Service
 
         //Funzione che ritorna la lista dei professori che poi sono esaminatori per esame
         
-        
-        
+       
         
         
         

@@ -3,6 +3,7 @@ using EcdlBooking.Data.Migrations;
 using EcdlBooking.Models;
 using EcdlBooking.Models;
 using EcdlBooking.Services.Interfaces;
+using LanguageExt.Pipes;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
@@ -71,7 +72,7 @@ namespace EcdlBooking.Configurazione
 
 
             // Applica automaticamente le migrazioni
-            await context.Database.MigrateAsync();
+           // await context.Database.MigrateAsync();
 
 
 
@@ -101,7 +102,7 @@ namespace EcdlBooking.Configurazione
 
                 await context.SaveChangesAsync();
             }
-            /*
+            
 
             //seeding dei moduli dell esamen del ECDL
             if (!context.Moduli.Any())
@@ -163,13 +164,11 @@ namespace EcdlBooking.Configurazione
             }
 
             // seeding dei ruoli
-            /*if (!context.Roles.Any())
+            if (!context.Roles.Any())
             {
                 context.Roles.AddRange(
 
                 new IdentityRole
-
-
                 {
                     Id = "26723492-169e-4ef7-941c-fa87c060d0d8",
                     Name = "Studente",
@@ -198,23 +197,37 @@ namespace EcdlBooking.Configurazione
 
 
             }
-
-            // Seesing dei ruoli
-              string[] roles = { "Admin", "Teacher", "Student" };
-
-        foreach (var role in roles)
-        {
-            if (!await roleManager.RoleExistsAsync(role))
+            // creazione dell utente
+            if (!context.ApplicationUsers.Any())
             {
-                await roleManager.CreateAsync(new IdentityRole(role));
+                // Creazione dell'utente amministratore di default  
+                string email = "gianmarco.lunardi@iis-bressanone.edu.it";
+                var adminUser = new ApplicationUser
+                {
+                    //UserName = "Gianmarco_Lunardi",
+                    UserName = email,
+                    Email = email,
+                    Name = "Gianmarco",
+                    Surname = "Lunardi",
+                    EmailConfirmed = true,
+                    IdSchool = Guid.Parse("a361e1b4-5427-463c-abc8-f2f176821181") // Assegna una scuola all'utente amministratore
+
+                };
+
+                var result = await userManager.CreateAsync(adminUser, "Pinuccio10@");
+                if (result.Succeeded)
+                {
+                   var resultRuolo = await userManager.AddToRoleAsync(adminUser, "Insegnante");
+                    var resultRuolo2 =await userManager.AddToRoleAsync(adminUser, "Admin");
+                    
+
+
+                }
+
+
             }
-        }
 
 
-
-            */
-
-            
 
 
         }

@@ -11,31 +11,20 @@ namespace EcdlBooking.Models
     {
         //Tabella Delle Prenotazioni Di tutti Gli Studenti
         public Guid Id { get; set; }
+        public DateTime DataPrenotazione { get; set; }
 
-        /// inizio modifiche
-        /// 
-        /*
-        [ForeignKey(nameof(ApplicationUser))]
-        public string IdStudent{ get; set; }
-        public ICollection<ApplicationUser> Studente {get; set;}
-        */
-        ///  Fine Modifiche
+        //relazione con studente
+        public Guid IdStudente { get; set; }
+        public ApplicationUser Studente { get; set; }
 
 
+        public  Guid IdEsame { get; set; }
+        public Exam Exam { get; set; }
 
-        //public string IdStudent { get; set; }
-        // Chiave Esterna Alla Tabella Esame
-        public string IdEsame { get; set; }
+        public Guid IdModulo { get; set; }
+        public Modulo Modulo { get; set; }
 
-        // Colonna dei Voti assume un voto negativo quando l alunno deve ancora 
-        // presentarsi all test 
-        public float Voto { get; set; } = -1;
-        //Contiene Quale Tipo tipo di Esame 
-        public Configurazione.Configurazione.ListaEsami? TipoEsame { get; set; }
-
-
-
-        //public SessionType Session { get; set; }
+        public float voto { get; set; }// numero negativo 
 
     }
 }

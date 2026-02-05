@@ -6,6 +6,7 @@
         public IUserRepository Utente { get;}
         public IExamRepository Esami { get; }
         public ISchedulerEcdlRepository SchedulerEcdl { get;}
+        public IModuliRepository Moduli { get; }
         Task Save();
     }
 }

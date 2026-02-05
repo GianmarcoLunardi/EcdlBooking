@@ -5,7 +5,7 @@
 namespace EcdlBooking.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Migrazioe_aggiornamenti4 : Migration
+    public partial class seedingAdmin : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

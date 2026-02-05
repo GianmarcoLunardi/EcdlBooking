@@ -5,7 +5,7 @@
 namespace EcdlBooking.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Migrazioe_aggiornamenti_ : Migration
+    public partial class Relazione_ScheduelrECDLExam : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

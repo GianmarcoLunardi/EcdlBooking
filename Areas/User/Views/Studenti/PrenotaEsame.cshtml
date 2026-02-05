@@ -1,65 +1,46 @@
-﻿ 
-@{
+﻿@{
     ViewData["Title"] = "Prenota Esame";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
-@model string
+}
+@model User_Studente_PrenotaEsame
+
 
 <div class="container">
+    Dentro La Cartella studenti
+ 
 
-    <!--   inizio dell impaginazionme -->
-    <div class="bg-success p-2 text-white">
-        <h1><i class="bi bi-calendar-day"></i>Prenota Esame</h1>
-    </div>
-    <!--   inizio dellimpaginazionme -->
-
-    <form class="row g-3">
-        <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail4">
-        </div>
-        <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword4">
-        </div>
-        <div class="col-12">
-            <label for="inputAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
-        <div class="col-12">
-            <label for="inputAddress2" class="form-label">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div>
-        <div class="col-md-6">
-            <label for="inputCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="col-md-4">
-            <label for="inputState" class="form-label">State</label>
-            <select id="inputState" class="form-select">
-                <option selected>Choose...</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <label for="inputZip" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-        </div>
-        <div class="col-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Check me out
-                </label>
+            <!--   inizio dell impaginazionme -->
+            <div class="bg-success p-2 text-white">
+                <h1><i class="bi bi-calendar-day"></i> Prenota Esame</h1>
             </div>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
-    </form>
+            <!--   inizio dellimpaginazionme -->
+
+        <form method="post" asp-action="PrenotaEsame_Post">
+
+
+        <!-- Dati Nascosti Da passare ial action per l inserimento-->
+                <input type="hidden" asp-for="@Model.DataPrenotazione" />
+        <input type="hidden" asp-for="@Model.Modulo" />
+        <input type="hidden" asp-for="@Model.Studente" />
+        <input type="hidden" asp-for="@Model.Exam" />
+
+
+     
 
 
 
-    <!--   Fine  delli mpaginazionme -->
+                <!-- Esame -->
+                <div class="col-sm-4">
+                <label for="inputModulo" class="form-label-lg">Seleziona l esame</label>
+                    <select class="form-select form-select-lg 
+                    form-select-opacity-25
+                    bg-opacity-50 form-select-bg-success"
+                            asp-for="@Model.IdModulo" 
+                            asp-items="Model.ListaModuli"></select>
+        </div> 
+     
+            <button type="submit" class="btn btn-primary">Prenota</button>
+        </form>
+ 
 </div>

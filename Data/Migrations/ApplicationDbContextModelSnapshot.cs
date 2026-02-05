@@ -17,7 +17,7 @@ namespace EcdlBooking.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "9.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -175,17 +175,38 @@ namespace EcdlBooking.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("IdEsame")
+                    b.Property<DateTime>("DataPrenotazione")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("Examid")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdEsame")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdModulo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdStudente")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ModuloId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("StudenteId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("TipoEsame")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Voto")
+                    b.Property<float>("voto")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Examid");
+
+                    b.HasIndex("ModuloId");
+
+                    b.HasIndex("StudenteId");
 
                     b.ToTable("SchedulerExams");
                 });
@@ -378,6 +399,33 @@ namespace EcdlBooking.Data.Migrations
                     b.Navigation("School");
                 });
 
+            modelBuilder.Entity("EcdlBooking.Models.SchedulerEcdl", b =>
+                {
+                    b.HasOne("EcdlBooking.Models.Exam", "Exam")
+                        .WithMany("PrenotazioniEsame")
+                        .HasForeignKey("Examid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EcdlBooking.Models.Modulo", "Modulo")
+                        .WithMany("Prenotazioni")
+                        .HasForeignKey("ModuloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EcdlBooking.Models.ApplicationUser", "Studente")
+                        .WithMany("PrenotazioniStudente")
+                        .HasForeignKey("StudenteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exam");
+
+                    b.Navigation("Modulo");
+
+                    b.Navigation("Studente");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -432,6 +480,18 @@ namespace EcdlBooking.Data.Migrations
             modelBuilder.Entity("EcdlBooking.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Esami");
+
+                    b.Navigation("PrenotazioniStudente");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Exam", b =>
+                {
+                    b.Navigation("PrenotazioniEsame");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Modulo", b =>
+                {
+                    b.Navigation("Prenotazioni");
                 });
 
             modelBuilder.Entity("EcdlBooking.Models.School", b =>

@@ -1,7 +1,8 @@
 ﻿using EcdlBooking.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using LanguageExt.Common;
+using LanguageExt;
 namespace EcdlBooking.Services.Interfaces
 {
     public interface IUserRepository : IGenericRepo<ApplicationUser>
@@ -20,7 +21,7 @@ namespace EcdlBooking.Services.Interfaces
         // task ritorna un TResult
         public Task<List<SelectListItem>> ListaEsaminatori();
         
-
+        public Task<ApplicationUser> GetAsync(string IdUtente);
 
         void Update(ApplicationUser user);
     }

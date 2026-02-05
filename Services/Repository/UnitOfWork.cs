@@ -19,8 +19,7 @@ namespace EcdlBooking.Services.Repository
             Utente = new UserRepository(_db);
             Esami = new ExamRepository(_db);
             SchedulerEcdl = new SchedulerEcdlRepository(_db);
-
-
+            Moduli=new ModulilRepository(_db);
         }
 
         
@@ -39,6 +38,7 @@ namespace EcdlBooking.Services.Repository
         public IUserRepository Utente { get; private set;  }
         public IExamRepository Esami { get; private set; }
         public ISchedulerEcdlRepository SchedulerEcdl { get; private set; }
+        public IModuliRepository Moduli { get; private set; }
     }
     
 }

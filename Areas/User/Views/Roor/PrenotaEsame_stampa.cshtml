@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EcdlBooking.Models.SchedulerEcdl>
+
+@{
+    ViewData["Title"] = "StampaPrenotazione";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>StampaPrenotazione</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataPrenotazione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdStudente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEsame)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdModulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.voto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataPrenotazione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdStudente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEsame)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdModulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.voto)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

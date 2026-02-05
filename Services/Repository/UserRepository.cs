@@ -2,6 +2,8 @@
 using EcdlBooking.Models;
 using EcdlBooking.Services.Interfaces;
 using EcdlBooking.ViewModel;
+using LanguageExt;
+using LanguageExt.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -68,20 +70,23 @@ namespace EcdlBooking.Services.Repository
         }
         */
 
+        public async Task<ApplicationUser> GetAsync(string IdUtente) {
+            var utente = await _db.Users.FirstOrDefaultAsync(u => u.Id == IdUtente);
+
+ 
+            return utente;
+        }
 
         public async Task<IList<string>> GetRulesIdAsync(ApplicationUser Utente) {
 
 
             IList<string> ListaIdRuoli = new List<string>();
 
+            // Selezionare un sottoinsieme del insieme UserRoles
             IList<string> IdRuoliUtenti= _db.UserRoles.Where(ur => ur.UserId == Utente.Id).Select(ur => ur.RoleId.ToString()).ToList();
-            /*
-            foreach (var NomeRuolo in roles)
-            {
-                // ListaIdRuoli.Add(_db.Ruoli.Where(r => r.Name == NomeRuolo).Select(r => r.Id).First());
-                ListaIdRuoli.Add( (_roleManager.FindByNameAsync(NomeRuolo).GetAwaiter().GetResult()).Id );
-            }
-            */
+            // _db rapprenta la una copia in memoria della base
+            //Attributo UserRole è una tabella , quindi una collezione di elementi
+            //IdRuoliUtenti ⊂ UserRoles = { ur | ur∈UserRoles and ur.UserId == Utente.Id }  
             return IdRuoliUtenti;
         }
 
@@ -90,26 +95,6 @@ namespace EcdlBooking.Services.Repository
 
         public async Task<List<SelectListItem>> ListaEsaminatori()
         {
-            /*
-            if ( _user_
-                
-                )
-            List<SelectListItem> Lista = new List<SelectListItem>();
-
-            
-            
-
-            Lista = _db.Ruoli
-                .Where(utente => utente.Name == "Esaminatore")
-                .Select(Ruolo => new SelectListItem
-            {
-                Text = Ruolo.Name,
-                Value = Ruolo.Id
-            })
-
-
-                .ToList();
-            */
             return null;
         }
 

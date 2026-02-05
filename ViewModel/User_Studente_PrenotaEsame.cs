@@ -1,4 +1,7 @@
 ﻿using EcdlBooking.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EcdlBooking.ViewModel
@@ -6,21 +9,23 @@ namespace EcdlBooking.ViewModel
     public class User_Studente_PrenotaEsame
     {
 
-        public Guid id { get; set; }
-        public DateTime Data { get; set; }
-        public DateTime Ora { get; set; } // ora Del Esame
-        public string TipoSessione { get; set; }
+        public Guid Id { get; set; }
+        public DateTime DataPrenotazione { get; set; }
 
-        // Con questa relazione si indica in quale scuola si fa l esame in una scuola
+        //public Guid IdStudente { get; set; }
+        public ApplicationUser Studente { get; set; }
+        public Guid IdStudente { get; set; }
 
-        
-        public Guid IdSchool { get; set; }
-        public School School { get; set; }
+        public Guid IdEsame { get; set; }
+     
+        public Exam Exam { get; set; }
 
-        //Relazione com L Esaminatore
-        // Un  esame viene fatto da un esaminatore
-        
-        public Guid IdEsaminatore { get; set; }
-        
+        public Guid? IdModulo { get; set; }
+        public Modulo? Modulo { get; set; }
+
+        [ValidateNever]
+        [Display(Name = "Modulo")]
+        public List<SelectListItem> ListaModuli { get; set; }
+
     }
 }

@@ -35,6 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\IService\Where.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Areas\User\Views\_ViewImports.cshtml" />
     <Content Remove="Areas\User\Views\_ViewStart.cshtml" />
   </ItemGroup>
@@ -47,7 +51,7 @@
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="FluentAssertions" Version="8.6.0" />
     <PackageReference Include="LanguageExt.Core" Version="4.4.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.9" />
@@ -57,7 +61,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0-preview.4.25258.110" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.12" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 

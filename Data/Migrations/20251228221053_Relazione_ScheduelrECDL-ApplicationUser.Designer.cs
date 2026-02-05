@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcdlBooking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250603093103_Migrazioe_aggiornamenti")]
-    partial class Migrazioe_aggiornamenti
+    [Migration("20251228221053_Relazione_ScheduelrECDL-ApplicationUser")]
+    partial class Relazione_ScheduelrECDLApplicationUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.15")
+                .HasAnnotation("ProductVersion", "9.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -34,14 +34,12 @@ namespace EcdlBooking.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Born")
+                    b.Property<DateTime?>("Born")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -49,7 +47,6 @@ namespace EcdlBooking.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -58,9 +55,6 @@ namespace EcdlBooking.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<Guid>("Esaminatoreid")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdSchool")
                         .HasColumnType("uniqueidentifier");
@@ -72,7 +66,6 @@ namespace EcdlBooking.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -92,14 +85,10 @@ namespace EcdlBooking.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("Schoolid")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -110,20 +99,17 @@ namespace EcdlBooking.Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("familyContactPerson")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("familyContactPerson_email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("familyContactPerson_phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Esaminatoreid");
+                    b.HasIndex("IdSchool");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -132,8 +118,6 @@ namespace EcdlBooking.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("Schoolid");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -144,28 +128,95 @@ namespace EcdlBooking.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Bookable")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("EsaminatoreId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("IdEsaminatore")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdSchool")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Schoolid")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("Ora")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TipoSessione")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
-                    b.HasIndex("Schoolid");
+                    b.HasIndex("EsaminatoreId");
+
+                    b.HasIndex("IdSchool");
 
                     b.ToTable("Exams");
                 });
 
+            modelBuilder.Entity("EcdlBooking.Models.Modulo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Moduli");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.SchedulerEcdl", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataPrenotazione")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("Examid")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdEsame")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdModulo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdStudente")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ModuloId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("StudenteId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<float>("voto")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Examid");
+
+                    b.HasIndex("ModuloId");
+
+                    b.HasIndex("StudenteId");
+
+                    b.ToTable("SchedulerExams");
+                });
+
             modelBuilder.Entity("EcdlBooking.Models.School", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -179,7 +230,7 @@ namespace EcdlBooking.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Schools");
                 });
@@ -323,15 +374,26 @@ namespace EcdlBooking.Data.Migrations
 
             modelBuilder.Entity("EcdlBooking.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("EcdlBooking.Models.Exam", "Esaminatore")
-                        .WithMany()
-                        .HasForeignKey("Esaminatoreid")
+                    b.HasOne("EcdlBooking.Models.School", "School")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("IdSchool")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Exam", b =>
+                {
+                    b.HasOne("EcdlBooking.Models.ApplicationUser", "Esaminatore")
+                        .WithMany("Esami")
+                        .HasForeignKey("EsaminatoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EcdlBooking.Models.School", "School")
-                        .WithMany()
-                        .HasForeignKey("Schoolid")
+                        .WithMany("Exam")
+                        .HasForeignKey("IdSchool")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -340,15 +402,31 @@ namespace EcdlBooking.Data.Migrations
                     b.Navigation("School");
                 });
 
-            modelBuilder.Entity("EcdlBooking.Models.Exam", b =>
+            modelBuilder.Entity("EcdlBooking.Models.SchedulerEcdl", b =>
                 {
-                    b.HasOne("EcdlBooking.Models.School", "School")
-                        .WithMany("Exam")
-                        .HasForeignKey("Schoolid")
+                    b.HasOne("EcdlBooking.Models.Exam", "Exam")
+                        .WithMany("PrenotazioniEsame")
+                        .HasForeignKey("Examid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("School");
+                    b.HasOne("EcdlBooking.Models.Modulo", "Modulo")
+                        .WithMany("Prenotazioni")
+                        .HasForeignKey("ModuloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EcdlBooking.Models.ApplicationUser", "Studente")
+                        .WithMany("PrenotazioniStudente")
+                        .HasForeignKey("StudenteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exam");
+
+                    b.Navigation("Modulo");
+
+                    b.Navigation("Studente");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -402,8 +480,27 @@ namespace EcdlBooking.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("EcdlBooking.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Esami");
+
+                    b.Navigation("PrenotazioniStudente");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Exam", b =>
+                {
+                    b.Navigation("PrenotazioniEsame");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Modulo", b =>
+                {
+                    b.Navigation("Prenotazioni");
+                });
+
             modelBuilder.Entity("EcdlBooking.Models.School", b =>
                 {
+                    b.Navigation("ApplicationUsers");
+
                     b.Navigation("Exam");
                 });
 #pragma warning restore 612, 618

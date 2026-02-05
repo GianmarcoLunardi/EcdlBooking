@@ -24,18 +24,18 @@ namespace EcdlBooking.Models
         public DateTime? Born { get; set; }
         public string? Address { get; set; }
         public string? City { get; set; }
-        public string?Country { get; set; }
+        public string? Country { get; set; }
         public string? familyContactPerson { get; set; }
         public string? familyContactPerson_phone { get; set; }
         public string? familyContactPerson_email { get; set; }
 
         // Relazione con School indisca la relazione in quale scuola è inscritto
         // sia che ia un professore che sia un alunno
-        
+
         [ForeignKey(nameof(School))]
         public Guid IdSchool { get; set; }
         public School School { get; set; }
-        
+
 
         // Relazione con  l esaminatore
         // un esaminatore può fare più esami
@@ -52,7 +52,7 @@ namespace EcdlBooking.Models
         public ICollection<SchedulerEcdl> Reservation { get; set; }
         */
         ///  Fine Modifiche
-
-
+        // relazione con la tabella relaztiva alla prenotazione esame
+        public List<SchedulerEcdl>? PrenotazioniStudente { get; set; }
     }
 }

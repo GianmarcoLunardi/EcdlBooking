@@ -1,0 +1,157 @@
+﻿@using EcdlBooking.ViewModel;
+@using System.Text.Json;
+@using System.Diagnostics
+
+
+
+
+
+@{
+    ViewData["Title"] = "Prenota Esame";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model User_Studente_PrenotaEsame
+
+
+<!--   inizio dell impaginazionme -->
+<div class="bg-success p-2 text-white">
+    <h1><i class="bi bi-calendar-day"></i> Prenota Esame</h1>
+</div>
+<!--   inizio dellimpaginazionme -->
+
+<div class="container">
+
+    Pagina di prenotazione esame
+
+
+    <form method="post" asp-action="PrenotaEsame_Post">
+
+
+        <input type="hidden" asp-for="@Model.DataPrenotazione" />
+        Is Studente
+        <input type="hidden" asp-for="@Model.IdStudente" />
+        Id Esame
+        <input type="hidden" asp-for="@Model.IdEsame" />
+       
+    <!--
+               <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+        <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example">
+        
+            
+           t type="text" class="form-control" id="inputEmail4" value="@Model.Studente.Name." disabled>
+            
+            <p class="fs-1">
+                <i class="bi bi-person"></i> &nbsp
+                        @Model.Studente.Name @Model.Studente.Surname
+                <br />
+
+                ciaooo
+            </p>
+        -->
+
+       
+
+
+
+        <!-- Esame -->
+        <div class="col-sm-12">
+            <label for="inputModulo" class="form-label-lg">Seleziona l esame</label>
+            <select class="form-select form-select-lg" asp-for="@Model.IdModulo" asp-items="@Model.ListaModuli"></select>
+        </div> 
+        <!--
+
+                <br />
+            <i class="bi bi-calendar-x"></i>
+                &nbsp : &nbsp
+                @Model.Exam.Data.ToString("dd/MM/yyyy") @**@
+    
+
+            ora
+            <i class="bi bi-clock-fill"></i>
+            &nbsp : &nbsp
+            @Model.Exam.Data.ToString("HH:mm")
+      
+
+    
+          
+            < class="fs-4">Luogo
+            <i class="bi bi-house-fill"></i>
+             &nbsp : &nbsp
+             @*@Model.Exam.School.Name *@
+         
+        Luogo
+         -->
+</div>
+        <br />
+<!--
+
+
+            <hr />
+                <div class="container">
+
+                    </<i class="bi bi-calendar-x"></i>
+                    &nbsp : &nbsp
+                    @Model.Exam.Data.ToString("dd/MM/yyyy") @**@div>
+                
+            </div> 
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Prenota</button>
+        </div>
+    
+@{
+    var json = JsonSerializer.Serialize(Model);
+}
+@json
+        <pre>@Html.Raw(json)</pre>
+
+
+    -->
+ 
+-
+
+
+<button type="submit" class="btn btn-primary">Invia</button>
+
+
+    </form>
+    
+
+
+  
+
+ 
+
+      
+    </div>
+    
+</div>
+
+       <<!--
+
+public class User_Studente_PrenotaEsame
+    {
+
+        public Guid Id { get; set; }
+        public DateTime DataPrenotazione { get; set; }
+
+        //public Guid IdStudente { get; set; }
+        public ApplicationUser Studente { get; set; }
+        public Guid IdStudente { get; set; }
+
+        public Guid IdEsame { get; set; }
+        public Exam Exam { get; set; }
+
+        public Guid? IdModulo { get; set; }
+        public Modulo? Modulo { get; set; }
+
+        [ValidateNever]
+        [Display(Name = "Modulo")]
+        public List<SelectListItem> ListaModuli { get; set; }
+
+    })]
+    
+    ListaModuli { get; set; }
+    */-->

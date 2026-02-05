@@ -43,18 +43,11 @@ namespace EcdlBooking.Data
         // https://dbdiagram.io/d/Diagramma-Booking-ECDL-68cc48c45779bb7265234be5
 
         // Tabelle 
-        //
-        //
+        // Sono una collezione di istanze di una determinata classe 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<School> Schools { get; set; }
-        //public DbSet<Class> classes { get; set; }
-
         public DbSet<Exam> Exams { get; set; }
-
         public DbSet<IdentityRole> Ruoli { get; set; }
-
-        //public DbSet<ApplicationUser> Utenti { get; set; }
-
         public DbSet<SchedulerEcdl> SchedulerExams { get; set; }
         public DbSet<Modulo> Moduli { get; set; }
     }

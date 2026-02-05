@@ -154,9 +154,11 @@ namespace EcdlBooking.Controllers
                    ;
                 _unitOfWork.Esami.add(newExam);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Index));
+                // return RedirectToAction(nameof(Index));
+                return Ok(esame);
             }
-            return Ok(esame);
+            return BadRequest(ModelState);
+            //return Ok(esame);
         }
 
 
