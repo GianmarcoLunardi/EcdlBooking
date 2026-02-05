@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcdlBookingTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60dec0160ac39b0471bec75580fa285fd486b451")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0a7c81908e3f5bdd67e9658806f1a65a4a82a07")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcdlBookingTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcdlBookingTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

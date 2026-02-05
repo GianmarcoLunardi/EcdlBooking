@@ -1,0 +1,15 @@
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\Pila.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\Pila.AssemblyInfoInputs.cache
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\Pila.AssemblyInfo.cs
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\Pila.csproj.CoreCompileInputs.cache
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\Pila.sourcelink.json
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\bin\Debug\net9.0\Pila.exe
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\bin\Debug\net9.0\Pila.deps.json
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\bin\Debug\net9.0\Pila.runtimeconfig.json
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\bin\Debug\net9.0\Pila.dll
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\bin\Debug\net9.0\Pila.pdb
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\Pila.dll
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\refint\Pila.dll
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\Pila.pdb
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\Pila.genruntimeconfig.cache
+C:\Users\Gianmarco Lunardi\Documents\Progetti\Pila\obj\Debug\net9.0\ref\Pila.dll
