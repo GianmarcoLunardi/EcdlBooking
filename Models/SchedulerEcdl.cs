@@ -14,15 +14,17 @@ namespace EcdlBooking.Models
         public DateTime DataPrenotazione { get; set; }
 
         //relazione con studente
-        public Guid IdStudente { get; set; }
-        public ApplicationUser Studente { get; set; }
+        public String IdStudente { get; set; }
+        //relazione uno a molti
+        // public ApplicationUser Studente { get; set; }
 
 
         public  Guid IdEsame { get; set; }
-        public Exam Exam { get; set; }
+        // relazione uno a molti
+       // public Exam Exam { get; set; }
 
         public Guid IdModulo { get; set; }
-        public Modulo Modulo { get; set; }
+        //public Modulo Modulo { get; set; }
 
         public float voto { get; set; }// numero negativo 
 

@@ -4,6 +4,7 @@ using EcdlBooking.Services;
 using EcdlBooking.Services.Interfaces;
 using EcdlBooking.Services.Repository;
 using EcdlBooking.ViewModel;
+using EcdlBooking.ViewModel.User;
 using LanguageExt;
 using LanguageExt.Common;
 using Microsoft.AspNetCore.Authorization;
@@ -13,11 +14,11 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+//using static Microsoft.CodeAnalysis.CSharp.SyntaxTokenParser;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
@@ -111,63 +112,104 @@ namespace EcdlBooking.Controllers
             Prenotazione.DataPrenotazione = DateTime.Today;
             Prenotazione.Studente = utente;
             Prenotazione.IdStudente = Guid.Parse(utente.Id);
-
             Prenotazione.IdEsame = exam.id;
             Prenotazione.Exam = exam;
                 Prenotazione.ListaModuli = _unitOfWork.Moduli.GetModuliListForDropDown();
 
-           
 
+            EcdlBooking.ViewModel.User.PrenotaEsame record = new PrenotaEsame
+            {
+                IdEsame= exam.id,
+                IdStudente=utente.Id,
+                ListaModuli = _unitOfWork.Moduli.GetModuliListForDropDown(),
+            };
             //User_Studente_PrenotaEsame PE = _unitOfWork.Esami.ViewModel(utente., exam);
 
 
 
-
-            return View(Prenotazione);
+            return View(record);
+            //return View(Prenotazione);
 
         }
 
         [HttpPost]
-        public async Task<IActionResult> PrenotaEsame_Post(User_Studente_PrenotaEsame Prenotazione)
+        public async Task<IActionResult> PrenotaEsame_Post(EcdlBooking.ViewModel.User.PrenotaEsame Prenotazione)
         {
-      
 
 
 
-            if (ModelState.IsValid)
+
+           
+            SchedulerEcdl Prenota = new SchedulerEcdl
             {
-                // Ritorna la view con gli errori
-                // inizia dell inserimento di una prenotazione da parte di uno scolaro
+                DataPrenotazione= DateTime.Today,
+                IdStudente= Prenotazione.IdStudente,
+                IdEsame= Prenotazione.IdEsame,
+                IdModulo= Prenotazione.IdModulo,
+            };
 
-                SchedulerEcdl EsameSchedule = new SchedulerEcdl
-                {
-                    Studente = Prenotazione.Studente,
-                    DataPrenotazione = Prenotazione.DataPrenotazione,
-                    Exam = Prenotazione.Exam,
-                    Modulo = Prenotazione.Modulo,
-                    voto = 0
-                };
+            var risultato = await _unitOfWork.SchedulerEcdl.PrenotazioneAsync(Prenota);
 
-
-                _unitOfWork.SchedulerEcdl.add(EsameSchedule);
-                _unitOfWork.Save();
-
-                PrenotaEsame_stampa(Prenotazione.Id);
-                //return View(Prenotazione);
-            }
-
-            // Dati validi: procedi con la logica
-            return RedirectToAction("Errore Nell Iseriemento");
-
-
-
-            // if(Modelstate.is)
-          //  User_Studente_PrenotaEsame prova = Prenotazione;
-            //return null;
+            return NoContent();
         }
 
+        
+        /*
+                 //Tabella Delle Prenotazioni Di tutti Gli Studenti
+    public Guid Id { get; set; }
+    public DateTime  { get; set; }
+
+    //relazione con studente
+    public Guid  { get; set; }
+    public ApplicationUser Studente { get; set; }
 
 
+    public  Guid  { get; set; }
+    public Exam Exam { get; set; }
+
+    public Guid IdModulo { get; set; }
+    public Modulo Modulo { get; set; }
+
+    public float voto { get; set; }// numero negativo 
+        */
+        //if (ModelState.IsValid)
+
+        // Ritorna la view con gli errori
+        // inizia dell inserimento di una prenotazione da parte di uno scolaro
+        /*
+                        SchedulerEcdl EsameSchedule = new SchedulerEcdl
+                        {
+                            Studente = Prenotazione.Studente,
+                            DataPrenotazione = Prenotazione.DataPrenotazione,
+                            Exam = Prenotazione.Exam,
+                            Modulo = Prenotazione.Modulo,
+                            voto = 0
+                        };
+
+
+                        _unitOfWork.SchedulerEcdl.add(EsameSchedule);
+                        _unitOfWork.Save();
+
+                        PrenotaEsame_stampa(Prenotazione.Id);
+                        //return View(Prenotazione);
+                    }
+        */
+        // Dati validi: procedi con la logica
+        //return RedirectToAction("Errore Nell Iseriemento");
+
+
+
+        // if(Modelstate.is)
+        //  User_Studente_PrenotaEsame prova = Prenotazione;
+        //return null;
+
+
+
+
+        // return RedirectToAction("Index");
+
+
+        /*
 
         [HttpGet("{id}")]
         public IActionResult PrenotaEsame_stampa
@@ -185,7 +227,7 @@ namespace EcdlBooking.Controllers
         }
 
         
-
+        */
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-@model User_Studente_PrenotaEsame
+@model EcdlBooking.ViewModel.User.PrenotaEsame
 
 
 <div class="container">
@@ -16,14 +16,16 @@
             </div>
             <!--   inizio dellimpaginazionme -->
 
-        <form method="post" asp-action="PrenotaEsame_Post">
+    <form method="post" asp-area="User" asp-controller="Studenti" asp-action="PrenotaEsame_Post">
 
 
         <!-- Dati Nascosti Da passare ial action per l inserimento-->
+        @*
                 <input type="hidden" asp-for="@Model.DataPrenotazione" />
         <input type="hidden" asp-for="@Model.Modulo" />
-        <input type="hidden" asp-for="@Model.Studente" />
-        <input type="hidden" asp-for="@Model.Exam" />
+        *@
+        <input type="hidden" asp-for="@Model.IdStudente" />
+        <input type="hidden" asp-for="@Model.IdEsame" />
 
 
      

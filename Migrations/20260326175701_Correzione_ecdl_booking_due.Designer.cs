@@ -9,18 +9,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EcdlBooking.Data.Migrations
+namespace EcdlBooking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251227203649_seedingAdmin")]
-    partial class seedingAdmin
+    [Migration("20260326175701_Correzione_ecdl_booking_due")]
+    partial class Correzione_ecdl_booking_due
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "9.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -178,17 +178,37 @@ namespace EcdlBooking.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("IdEsame")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("TipoEsame")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DataPrenotazione")
+                        .HasColumnType("datetime2");
 
-                    b.Property<float>("Voto")
+                    b.Property<Guid?>("Examid")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdEsame")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdModulo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdStudente")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ModuloId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("voto")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("Examid");
+
+                    b.HasIndex("ModuloId");
 
                     b.ToTable("SchedulerExams");
                 });
@@ -381,6 +401,21 @@ namespace EcdlBooking.Data.Migrations
                     b.Navigation("School");
                 });
 
+            modelBuilder.Entity("EcdlBooking.Models.SchedulerEcdl", b =>
+                {
+                    b.HasOne("EcdlBooking.Models.ApplicationUser", null)
+                        .WithMany("PrenotazioniStudente")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("EcdlBooking.Models.Exam", null)
+                        .WithMany("PrenotazioniEsame")
+                        .HasForeignKey("Examid");
+
+                    b.HasOne("EcdlBooking.Models.Modulo", null)
+                        .WithMany("Prenotazioni")
+                        .HasForeignKey("ModuloId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -435,6 +470,18 @@ namespace EcdlBooking.Data.Migrations
             modelBuilder.Entity("EcdlBooking.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Esami");
+
+                    b.Navigation("PrenotazioniStudente");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Exam", b =>
+                {
+                    b.Navigation("PrenotazioniEsame");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Modulo", b =>
+                {
+                    b.Navigation("Prenotazioni");
                 });
 
             modelBuilder.Entity("EcdlBooking.Models.School", b =>

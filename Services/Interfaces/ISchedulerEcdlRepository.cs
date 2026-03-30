@@ -8,6 +8,9 @@ namespace EcdlBooking.Services.Interfaces
         //IEnumerable<SelectListItem> GetCategoryListForDropDown(Guid? idSchool);
        //public School Find(Guid id);
         void Update(SchedulerEcdl esame);
+
+
+
     }
 }
 

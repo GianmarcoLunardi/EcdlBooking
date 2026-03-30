@@ -1,5 +1,4 @@
 ﻿using EcdlBooking.Configurazione;
-using EcdlBooking.Data.Migrations;
 using EcdlBooking.Models;
 using EcdlBooking.Models;
 using LanguageExt.Pipes;

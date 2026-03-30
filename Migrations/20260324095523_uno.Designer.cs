@@ -9,18 +9,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EcdlBooking.Data.Migrations
+namespace EcdlBooking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250926200741_Relazione Da tab School a Tab User")]
-    partial class RelazioneDatabSchoolaTabUser
+    [Migration("20260324095523_uno")]
+    partial class uno
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "9.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -132,6 +132,7 @@ namespace EcdlBooking.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EsaminatoreId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("IdEsaminatore")
@@ -156,23 +157,59 @@ namespace EcdlBooking.Data.Migrations
                     b.ToTable("Exams");
                 });
 
+            modelBuilder.Entity("EcdlBooking.Models.Modulo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Moduli");
+                });
+
             modelBuilder.Entity("EcdlBooking.Models.SchedulerEcdl", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("IdEsame")
+                    b.Property<DateTime>("DataPrenotazione")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("Examid")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdEsame")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdModulo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdStudente")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ModuloId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("StudenteId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("TipoEsame")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Voto")
+                    b.Property<float>("voto")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Examid");
+
+                    b.HasIndex("ModuloId");
+
+                    b.HasIndex("StudenteId");
 
                     b.ToTable("SchedulerExams");
                 });
@@ -196,22 +233,6 @@ namespace EcdlBooking.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Schools");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("a361e1b4-5427-463c-abc8-f2f176821181"),
-                            Address = "Via Pra' delle Suore 1/A",
-                            City = "Bressanone",
-                            Name = "ITE LICEO Falcone Borsellino"
-                        },
-                        new
-                        {
-                            Id = new Guid("a37260f3-ec66-4787-a60d-2baa24aefa5a"),
-                            Address = "Via Pra' delle Suore 1/A",
-                            City = "Bressanone",
-                            Name = "FP Enrico Mattei"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -239,26 +260,6 @@ namespace EcdlBooking.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "26723492-169e-4ef7-941c-fa87c060d0d8",
-                            Name = "Studente",
-                            NormalizedName = "STUDENTE"
-                        },
-                        new
-                        {
-                            Id = "7a4edc4a-6ad0-466b-929c-73a8f769fa5e",
-                            Name = "Insegnante",
-                            NormalizedName = "INSEGNANTE"
-                        },
-                        new
-                        {
-                            Id = "2a1447a0-8c6a-46e9-b187-25a28e8da50e",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -386,7 +387,9 @@ namespace EcdlBooking.Data.Migrations
                 {
                     b.HasOne("EcdlBooking.Models.ApplicationUser", "Esaminatore")
                         .WithMany("Esami")
-                        .HasForeignKey("EsaminatoreId");
+                        .HasForeignKey("EsaminatoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EcdlBooking.Models.School", "School")
                         .WithMany("Exam")
@@ -397,6 +400,33 @@ namespace EcdlBooking.Data.Migrations
                     b.Navigation("Esaminatore");
 
                     b.Navigation("School");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.SchedulerEcdl", b =>
+                {
+                    b.HasOne("EcdlBooking.Models.Exam", "Exam")
+                        .WithMany("PrenotazioniEsame")
+                        .HasForeignKey("Examid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EcdlBooking.Models.Modulo", "Modulo")
+                        .WithMany("Prenotazioni")
+                        .HasForeignKey("ModuloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EcdlBooking.Models.ApplicationUser", "Studente")
+                        .WithMany("PrenotazioniStudente")
+                        .HasForeignKey("StudenteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exam");
+
+                    b.Navigation("Modulo");
+
+                    b.Navigation("Studente");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -453,6 +483,18 @@ namespace EcdlBooking.Data.Migrations
             modelBuilder.Entity("EcdlBooking.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Esami");
+
+                    b.Navigation("PrenotazioniStudente");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Exam", b =>
+                {
+                    b.Navigation("PrenotazioniEsame");
+                });
+
+            modelBuilder.Entity("EcdlBooking.Models.Modulo", b =>
+                {
+                    b.Navigation("Prenotazioni");
                 });
 
             modelBuilder.Entity("EcdlBooking.Models.School", b =>

@@ -1,5 +1,4 @@
 ﻿using EcdlBooking.Data;
-using EcdlBooking.Data.Migrations;
 using EcdlBooking.Models;
 using EcdlBooking.Models;
 using EcdlBooking.Services.Interfaces;
@@ -51,15 +50,6 @@ namespace EcdlBooking.Configurazione
        
         public static List<string> ListaRuoli = new List<string> { Studente, Insegnante, Amministratore };
 
-        public enum ListaEsami
-        {
-            [Description("Esame Uno")]
-            EsameUno,
-            [Description("Esame Due")]
-            EsameDue,
-            [Description("Esame Tre")]
-            EsameTre ,
-        }
 
         public async static Task SeedAsync(IServiceProvider services)
         {
